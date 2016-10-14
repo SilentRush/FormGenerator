@@ -1,0 +1,179 @@
+img{
+  max-width: 100%;
+}
+.field{
+  cursor:pointer;
+}
+.field:hover{
+  border-color: #929292;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #929292;
+  border-radius: 6px;
+}
+.selectedField{
+  border-color: #0f88d4;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #0f88d4;
+  border-radius: 6px;
+}
+.mobile{
+  width:540px;
+}
+.tablet{
+  width:900px;
+}
+.desktop{
+}
+ul {list-style-type: none;}
+body {font-family: Verdana, sans-serif;}
+
+/* Month header */
+.month {
+    padding: 70px 25px;
+    width: 100%;
+    background: #1abc9c;
+}
+
+/* Month list */
+.month ul {
+    margin: 0;
+    padding: 0;
+}
+
+.month ul li {
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+/* Previous button inside month header */
+.month .prev {
+    float: left;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+/* Next button */
+.month .next {
+    float: right;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+/* Weekdays (Mon-Sun) */
+.weekdays {
+    margin: 0;
+    padding: 10px 0;
+    background-color:#ddd;
+}
+
+.weekdays li {
+    display: inline-block;
+    width: 13.6%;
+    color: #666;
+    text-align: center;
+}
+
+.days li:hover{
+  color: #168602;
+  font-weight: bold;
+}
+
+.weekdaysReservation {
+    margin: 0;
+    padding: 10px 0;
+    background-color:#ddd;
+}
+
+.weekdaysReservation li {
+    display: inline-block;
+    width: 12.5%;
+    color: #666;
+    text-align: center;
+}
+
+.weekdaysReservationView {
+    margin: 0;
+    padding: 10px 0;
+    background-color:#eee;
+}
+
+.weekdaysReservationView li {
+    display: inline-block;
+    width: 12.5%;
+    color: #666;
+    text-align: center;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.weekdaysReservationView li:hover{
+  color: #168602;
+  font-weight: bold;
+}
+
+/* Days (1-31) */
+.days {
+    padding: 10px 0;
+    background: #eee;
+    margin: 0;
+}
+
+.days li {
+    list-style-type: none;
+    display: inline-block;
+    width: 13.6%;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size:12px;
+    color:#777;
+    cursor: pointer;
+}
+
+.lastMonthDays li{
+  color: #adadad;
+}
+
+li.active{
+  color: #3050f1;
+  font-weight: bold;
+}
+
+/* Highlight the "current" day */
+.days li .active {
+    padding: 5px;
+    background: #1abc9c;
+    color: white !important
+}
+.reservationsContainer{
+  background: #eeeeee;
+}
+.reservationsHeader {
+  padding: 8px;
+  background: #228fdc;
+  border-bottom: 1px #003c67 solid;
+  color: white;
+}
+
+.reservationsHeader span:hover {
+  color: #72dc22;
+}
+
+.reservationsList {
+  overflow: auto;
+  max-height: 168px;
+  min-height: 40px;
+  padding: 8px;
+}
+
+.reservationsLocationList{
+  overflow: auto;
+  max-height: 375px;
+}
+
+.reservationsFooter {
+  background: #228fdc;
+  color: white;
+  border-top: 1px #003c67 solid;
+  padding:8px;
+}

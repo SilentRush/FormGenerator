@@ -1,0 +1,7 @@
+{
+  "contacts": [
+    {"id":1,"name":"Bob"},
+    {"id":2,"name":"Sally"},
+    {"id":3,"name":"Jane"}
+  ]
+}
