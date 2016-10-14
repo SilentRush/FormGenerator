@@ -45863,7 +45863,7 @@
 	        { className: "row" },
 	        _react2.default.createElement(
 	          "div",
-	          { className: "col-xs-12 col-sm-8 col-md-8", onDrop: this.onDrop, onDragOver: this.onDragOver, style: { minHeight: "500px" } },
+	          { className: "small-12 medium-8 large-8", onDrop: this.onDrop, onDragOver: this.onDragOver, style: { minHeight: "500px" } },
 	          _react2.default.createElement(
 	            "h2",
 	            null,
@@ -45873,13 +45873,13 @@
 	        ),
 	        _react2.default.createElement(
 	          "div",
-	          { className: "col-xs-12 col-sm-4 col-md-4" },
+	          { className: "small-12 medium-4 large-4" },
 	          _react2.default.createElement(
 	            "div",
 	            { className: "row" },
 	            _react2.default.createElement(
 	              "div",
-	              { className: "col-xs-12 col-sm-12 col-md-12", style: { paddingBottom: "15px" } },
+	              { className: "small-12 medium-12 large-12", style: { paddingBottom: "15px" } },
 	              _react2.default.createElement(
 	                "label",
 	                null,
@@ -46080,7 +46080,7 @@
 	              }
 	              return _react2.default.createElement(
 	                "div",
-	                { className: "field col-xs-" + field[colWidth] + " " + "col-sm-" + field[colWidth] + " " + "col-md-" + field[colWidth] + " " + selected, key: field.id },
+	                { className: "field small-" + field[colWidth] + " " + "medium-" + field[colWidth] + " " + "large-" + field[colWidth] + " " + selected, key: field.id },
 	                f
 	              );
 	            })
@@ -46120,32 +46120,32 @@
 	          null,
 	          _react2.default.createElement(
 	            "div",
-	            { draggable: "true", className: "col-xs-4 col-sm-4 col-md-4", onDragStart: this.props.onDrag, "data-type": "text", style: { padding: "10px", textAlign: "center", border: "#e2e2e2 1px solid", borderRadius: "5px", cursor: "move" } },
+	            { draggable: "true", className: "small-4 medium-4 large-4", onDragStart: this.props.onDrag, "data-type": "text", style: { padding: "10px", textAlign: "center", border: "#e2e2e2 1px solid", borderRadius: "5px", cursor: "move" } },
 	            "Text Input"
 	          ),
 	          _react2.default.createElement(
 	            "div",
-	            { draggable: "true", className: "col-xs-4 col-sm-4 col-md-4", onDragStart: this.props.onDrag, "data-type": "date", style: { padding: "10px", textAlign: "center", border: "#e2e2e2 1px solid", borderRadius: "5px", cursor: "move" } },
+	            { draggable: "true", className: "small-4 medium-4 large-4", onDragStart: this.props.onDrag, "data-type": "date", style: { padding: "10px", textAlign: "center", border: "#e2e2e2 1px solid", borderRadius: "5px", cursor: "move" } },
 	            "Date Input"
 	          ),
 	          _react2.default.createElement(
 	            "div",
-	            { draggable: "true", className: "col-xs-4 col-sm-4 col-md-4", onDragStart: this.props.onDrag, "data-type": "datetime", style: { padding: "10px", textAlign: "center", border: "#e2e2e2 1px solid", borderRadius: "5px", cursor: "move" } },
+	            { draggable: "true", className: "small-4 medium-4 large-4", onDragStart: this.props.onDrag, "data-type": "datetime", style: { padding: "10px", textAlign: "center", border: "#e2e2e2 1px solid", borderRadius: "5px", cursor: "move" } },
 	            "Datetime Input"
 	          ),
 	          _react2.default.createElement(
 	            "div",
-	            { draggable: "true", className: "col-xs-4 col-sm-4 col-md-4", onDragStart: this.props.onDrag, "data-type": "number", style: { padding: "10px", textAlign: "center", border: "#e2e2e2 1px solid", borderRadius: "5px", cursor: "move" } },
+	            { draggable: "true", className: "small-4 medium-4 large-4", onDragStart: this.props.onDrag, "data-type": "number", style: { padding: "10px", textAlign: "center", border: "#e2e2e2 1px solid", borderRadius: "5px", cursor: "move" } },
 	            "Number Input"
 	          ),
 	          _react2.default.createElement(
 	            "div",
-	            { draggable: "true", className: "col-xs-4 col-sm-4 col-md-4", onDragStart: this.props.onDrag, "data-type": "checkbox", style: { padding: "10px", textAlign: "center", border: "#e2e2e2 1px solid", borderRadius: "5px", cursor: "move" } },
+	            { draggable: "true", className: "small-4 medium-4 large-4", onDragStart: this.props.onDrag, "data-type": "checkbox", style: { padding: "10px", textAlign: "center", border: "#e2e2e2 1px solid", borderRadius: "5px", cursor: "move" } },
 	            "Checkbox Input"
 	          ),
 	          _react2.default.createElement(
 	            "div",
-	            { draggable: "true", className: "col-xs-4 col-sm-4 col-md-4", onDragStart: this.props.onDrag, "data-type": "image", style: { padding: "10px", textAlign: "center", border: "#e2e2e2 1px solid", borderRadius: "5px", cursor: "move" } },
+	            { draggable: "true", className: "small-4 medium-4 large-4", onDragStart: this.props.onDrag, "data-type": "image", style: { padding: "10px", textAlign: "center", border: "#e2e2e2 1px solid", borderRadius: "5px", cursor: "move" } },
 	            "Image"
 	          )
 	        ),

@@ -15,7 +15,14 @@ export default class Home extends React.Component{
       ],
       numFields:0,
       selectedField:{},
-      displayMode:"desktop"
+      displayMode:"desktop",
+      document: {
+        "Account":{
+          "bop":["x"],
+          "Name":"Test Document"
+        },
+        "NumOfHouses":5
+      }
     };
 
     this.onSelectField = (field) => {
@@ -73,8 +80,20 @@ export default class Home extends React.Component{
       }
       if(field){
         var fields = this.state.fields;
-        field.row = fields.length;
-        fields[fields.length - 1].push(field);
+        var currRow = fields[fields.length - 1];
+        var rowLength = 0;
+        currRow.filter((row)=>{rowLength += row.colmd;});
+        console.log(rowLength);
+        if(rowLength + field.colmd <= 12){
+          field.row = fields.length;
+          fields[fields.length - 1].push(field);
+        }
+        else{
+          field.row = fields.length + 1;
+          fields[fields.length] = [];
+          fields[fields.length - 1].push(field);
+        }
+
         this.setState({fields:fields,numFields:this.state.numFields + 1});
       }
 
@@ -143,6 +162,47 @@ export default class Home extends React.Component{
       this.setState({selectedField:field, fields:fields});
     }
 
+    this.updateProperty = (obj,is, value) => {
+        if (typeof is == 'string')
+            return this.updateProperty(obj,is.split('.'), value);
+        else if (is.length==1 && value!==undefined){
+          if(is[0].includes("[") || is[0].includes("]")){
+            var patt = /\[([0-9]+)\]/g
+            var res = patt.exec(is[0]);
+            res = res[0].substring(1, res[0].length-1);
+            return obj[is[0].split("[")[0]][res] = value;
+          }else{
+            return obj[is[0]] = value;
+          }
+        }
+        else if (is.length==0)
+            return obj;
+        else{
+          if(is[0].includes("[") || is[0].includes("]")){
+            var patt = /\[([0-9]+)\]/g
+            var res = patt.exec(is[0]);
+            res = res[0].substring(1, res[0].length-1);
+            return this.updateProperty(obj[is[0].split("[")[0]][res],is.slice(1), value);
+          }else{
+            return this.updateProperty(obj[is[0]],is.slice(1), value);
+          }
+        }
+
+    }
+
+    this.onUpdateDocument = (property, value, func) => {
+      var document = this.state.document;
+      if(property)
+        this.updateProperty(document, property, value);
+      try{
+          eval(func);
+      }
+      catch(err){
+        console.log(err.message);
+      }
+      this.setState({document:document},()=>{console.log(this.state);});
+    }
+
     this.removeSelectedField = () => {
       var field = this.state.selectedField;
       var fields = this.state.fields;
@@ -171,13 +231,13 @@ export default class Home extends React.Component{
   render(){
     return (
       <div className="row">
-        <div className="col-xs-12 col-sm-8 col-md-8" onDrop={this.onDrop} onDragOver={this.onDragOver} style={{minHeight:"500px"}}>
+        <div className="small-12 medium-8 large-8 columns" onDrop={this.onDrop} onDragOver={this.onDragOver} style={{minHeight:"500px"}}>
           <h2>Template Layout</h2>
-          <ParseFields fields={this.state.fields} onSelectField={this.onSelectField} displayMode={this.state.displayMode} selectedField={this.state.selectedField} />
+          <ParseFields document={this.state.document} onUpdateDocument={this.onUpdateDocument} fields={this.state.fields} onSelectField={this.onSelectField} displayMode={this.state.displayMode} selectedField={this.state.selectedField} />
         </div>
-        <div className="col-xs-12 col-sm-4 col-md-4">
+        <div className="small-12 medium-4 large-4 columns">
           <div className="row">
-            <div className="col-xs-12 col-sm-12 col-md-12" style={{paddingBottom:"15px"}}>
+            <div className="small-12 medium-12 large-12 columns" style={{paddingBottom:"15px"}}>
               <label>Display Mode</label>
               <select className="form-control" value={this.state.displayMode} onChange={(e)=>{this.changeDisplayMode(e.target.value)}}>
                 <option value="mobile" selected={this.state.displayMode == "mobile"}>Mobile</option>
@@ -234,7 +294,7 @@ class ParseFields extends React.Component {
                   f = (
                         <div onClick={()=>{this.props.onSelectField(field.id)}}>
                           <label>{field.label}</label>
-                          <input type="text" className="form-control" name={field.name} style={style}  />
+                          <input type="text" className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.document[field.binding]}  />
                         </div>
                        )
                   break;
@@ -242,7 +302,7 @@ class ParseFields extends React.Component {
                   f = (
                         <div onClick={()=>{this.props.onSelectField(field.id)}}>
                           <label>{field.label}</label>
-                          <input type="date" className="form-control" name={field.name} style={style}  />
+                          <input type="date" className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.document[field.binding]}  />
                         </div>
                        )
                   break;
@@ -250,7 +310,7 @@ class ParseFields extends React.Component {
                   f = (
                         <div onClick={()=>{this.props.onSelectField(field.id)}}>
                           <label>{field.label}</label>
-                          <input type="number" className="form-control" name={field.name} style={style}  />
+                          <input type="number" className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.document[field.binding]}  />
                         </div>
                        )
                   break;
@@ -258,7 +318,7 @@ class ParseFields extends React.Component {
                   f = (
                         <div onClick={()=>{this.props.onSelectField(field.id)}}>
                           <label>{field.label}</label>
-                          <input type="email" className="form-control" name={field.name} style={style}  />
+                          <input type="email" className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.document[field.binding]}  />
                         </div>
                        )
                   break;
@@ -266,21 +326,21 @@ class ParseFields extends React.Component {
                   f = (
                         <div onClick={()=>{this.props.onSelectField(field.id)}}>
                           <label>{field.label}</label>
-                          <input type="datetime-local" className="form-control" name={field.name} style={style}  />
+                          <input type="datetime-local" className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.document[field.binding]}  />
                         </div>
                        )
                   break;
                 case "checkbox":
                   f = (
                         <div className="checkbox" onClick={()=>{this.props.onSelectField(field.id)}}>
-                          <label><input type="checkbox" name={field.name} style={style}  />{field.label}</label>
+                          <label><input type="checkbox" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.document[field.binding]}  />{field.label}</label>
                         </div>
                        )
                   break;
                 case "image":
                   f = (
-                        <div className="checkbox" onClick={()=>{this.props.onSelectField(field.id)}}>
-                          <img src={field.src} style={style} />
+                        <div onClick={()=>{this.props.onSelectField(field.id)}}>
+                          <img src={field.src} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.document[field.binding]} />
                         </div>
                        )
                   break;
@@ -288,13 +348,13 @@ class ParseFields extends React.Component {
                   f = (
                         <div onClick={()=>{this.props.onSelectField(field.id)}}>
                           <label>{field.label}</label>
-                          <input type="text" className="form-control" name={field.name} style={style}  />
+                          <input type="text" className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.document[field.binding]}  />
                         </div>
                        )
                   break;
               }
               return (
-                <div className={"field col-xs-" + field[colWidth] + " " + "col-sm-" + field[colWidth] + " " + "col-md-" + field[colWidth] + " " + selected} key={field.id}>
+                <div className={"field columns small-" + field[colWidth] + " " + "medium-" + field[colWidth] + " " + "large-" + field[colWidth] + " " + selected} key={field.id}>
                   {f}
                 </div>
               );
@@ -318,16 +378,16 @@ class Toolbar extends React.Component {
     return (
       <div>
         <div>
-          <div draggable="true" className="col-xs-4 col-sm-4 col-md-4" onDragStart={this.props.onDrag} data-type="text" style={{padding:"10px",textAlign:"center", border:"#e2e2e2 1px solid", borderRadius:"5px",cursor:"move"}}>Text Input</div>
-          <div draggable="true" className="col-xs-4 col-sm-4 col-md-4" onDragStart={this.props.onDrag}  data-type="date" style={{padding:"10px",textAlign:"center", border:"#e2e2e2 1px solid", borderRadius:"5px",cursor:"move"}}>Date Input</div>
-          <div draggable="true" className="col-xs-4 col-sm-4 col-md-4" onDragStart={this.props.onDrag}  data-type="datetime" style={{padding:"10px",textAlign:"center", border:"#e2e2e2 1px solid", borderRadius:"5px",cursor:"move"}}>Datetime Input</div>
-          <div draggable="true" className="col-xs-4 col-sm-4 col-md-4" onDragStart={this.props.onDrag}  data-type="number" style={{padding:"10px",textAlign:"center", border:"#e2e2e2 1px solid", borderRadius:"5px",cursor:"move"}}>Number Input</div>
-          <div draggable="true" className="col-xs-4 col-sm-4 col-md-4" onDragStart={this.props.onDrag}  data-type="checkbox" style={{padding:"10px",textAlign:"center", border:"#e2e2e2 1px solid", borderRadius:"5px",cursor:"move"}}>Checkbox Input</div>
-          <div draggable="true" className="col-xs-4 col-sm-4 col-md-4" onDragStart={this.props.onDrag}  data-type="image" style={{padding:"10px",textAlign:"center", border:"#e2e2e2 1px solid", borderRadius:"5px",cursor:"move"}}>Image</div>
+          <div draggable="true" className="small-6 medium-4 large-4 columns" onDragStart={this.props.onDrag} data-type="text" style={{paddingLeft: "0.3rem",paddingRight: "0.3rem"}}><button type="button" className="button hollow" style={{cursor:"move",width:"100%",padding: "0.85em 0.2em"}}>Text Input</button></div>
+          <div draggable="true" className="small-6 medium-4 large-4 columns" onDragStart={this.props.onDrag}  data-type="date" style={{paddingLeft: "0.3rem",paddingRight: "0.3rem"}}><button type="button" className="button hollow" style={{cursor:"move",width:"100%",padding: "0.85em 0.2em"}}>Date Input</button></div>
+          <div draggable="true" className="small-6 medium-4 large-4 columns" onDragStart={this.props.onDrag}  data-type="datetime" style={{paddingLeft: "0.3rem",paddingRight: "0.3rem"}}><button type="button" className="button hollow" style={{cursor:"move",width:"100%",padding: "0.85em 0.2em"}}>Datetime Input</button></div>
+          <div draggable="true" className="small-6 medium-4 large-4 columns" onDragStart={this.props.onDrag}  data-type="number" style={{paddingLeft: "0.3rem",paddingRight: "0.3rem"}}><button type="button" className="button hollow" style={{cursor:"move",width:"100%",padding: "0.85em 0.2em"}}>Number Input</button></div>
+          <div draggable="true" className="small-6 medium-4 large-4 columns" onDragStart={this.props.onDrag}  data-type="checkbox" style={{paddingLeft: "0.3rem",paddingRight: "0.3rem"}}><button type="button" className="button hollow" style={{cursor:"move",width:"100%",padding: "0.85em 0.2em"}}>Checkbox Input</button></div>
+          <div draggable="true" className="small-6 medium-4 large-4 columns" onDragStart={this.props.onDrag}  data-type="image" style={{paddingLeft: "0.3rem",paddingRight: "0.3rem"}}><button type="button" className="button hollow" style={{cursor:"move",width:"100%",padding: "0.85em 0.2em"}}>Image</button></div>
         </div>
         <div>
-          <button type="text" className="btn btn-primary" onClick={()=>{this.props.addRow()}}>Add Row</button>
-          <button type="text" className="btn btn-danger" onClick={()=>{this.props.removeRow()}}>Remove Row</button>
+          <button type="text" className="button primary" onClick={()=>{this.props.addRow()}}>Add Row</button>
+          <button type="text" className="button alert" onClick={()=>{this.props.removeRow()}}>Remove Row</button>
         </div>
       </div>
     );
@@ -340,42 +400,125 @@ class SelectedField extends React.Component {
   }
 
   render(){
-    let {id,label,name,type,colmd,colsm,colxs,src,style,row} = this.props.selectedField;
+    let {id,label,name,type,colmd,colsm,colxs,src,style,row,onChange,binding} = this.props.selectedField;
     var output;
     if(this.props.selectedField && this.props.selectedField.id){
+      var img = "";
+      if(type == "image")
+        img = (<div className="row">
+          <div className="columns small-3">
+            <label>Image Url: </label>
+          </div>
+          <div className="columns small-9">
+            <input type="text" className="smallCtrl" value={src} onChange={(e)=>{this.props.onChangeSelectedField("src",e.target.value);}} />
+          </div>
+        </div>);
       output = (
         <div>
-          <h2>Selected Field</h2>
-          <input type="button" className="btn btn-warning" onClick={()=>{this.props.deSelectField();}} value="Deselect" /><br />
-          <label>Row: </label>
-          <select className="form-control" value={row} onChange={(e)=>{this.props.onChangeFieldRow(e.target.value)}}>
-            {times(this.props.rows,(count)=>{return <option selected={row == count} value={count}>{count}</option>;})}
-          </select>
-          <label>Name: </label>
-          <input type="text" className="form-control" value={name} onChange={(e)=>{this.props.onChangeSelectedField("name",e.target.value)}} />
-          <label>Label: </label>
-          <input type="text" className="form-control" value={label} onChange={(e)=>{this.props.onChangeSelectedField("label",e.target.value)}} />
-          <label>Type: </label>
-          <select onChange={(e)=>{this.props.onChangeSelectedField("type",e.target.value)}} value={type} className="form-control">
-            <option value="text" selected={type == "text"}>Text</option>
-            <option value="date" selected={type == "date"}>Date</option>
-            <option value="datetime" selected={type == "datetime"}>Date Time</option>
-            <option value="number" selected={type == "number"}>Number</option>
-            <option value="email" selected={type == "email"}>Email</option>
-            <option value="checkbox" selected={type == "checkbox"}>Checkbox</option>
-            <option value="image" selected={type == "image"}>Image</option>
-          </select>
-          <label>Mobile Device Width (Max = 12): </label>
-          <input type="text" className="form-control" value={colxs} onChange={(e)=>{this.props.onChangeSelectedField("colxs",e.target.value);}} />
-          <label>Tablet Device Width (Max = 12): </label>
-          <input type="text" className="form-control" value={colsm} onChange={(e)=>{this.props.onChangeSelectedField("colsm",e.target.value);}} />
-          <label>Desktop Device Width (Max = 12): </label>
-          <input type="text" className="form-control" value={colmd} onChange={(e)=>{this.props.onChangeSelectedField("colmd",e.target.value);}} />
-          <label>Style: </label>
-          <input type="text" className="form-control" value={style} onChange={(e)=>{this.props.onChangeSelectedField("style",e.target.value);}} />
-          <label>Image Url: </label>
-          <input type="text" className="form-control" value={src} onChange={(e)=>{this.props.onChangeSelectedField("src",e.target.value);}} />
-          <input type="button" className="btn btn-danger" onClick={()=>{this.props.removeSelectedField();}} value="Remove Field" />
+          <h3>Selected Field</h3>
+          <input type="button" className="button warning" onClick={()=>{this.props.deSelectField();}} value="Deselect" /><br />
+          <div className="row">
+            <div className="columns small-3">
+              <label>Row: </label>
+            </div>
+            <div className="columns small-9">
+              <select className="smallCtrl form-control" value={row} onChange={(e)=>{this.props.onChangeFieldRow(e.target.value)}}>
+                {times(this.props.rows,(count)=>{return <option selected={row == count} value={count}>{count}</option>;})}
+              </select>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="columns small-3">
+              <label>Binding: </label>
+            </div>
+            <div className="columns small-9">
+              <input type="text" className="smallCtrl" value={binding} onChange={(e)=>{this.props.onChangeSelectedField("binding",e.target.value)}} />
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="columns small-3">
+              <label>Name: </label>
+            </div>
+            <div className="columns small-9">
+              <input type="text" className="smallCtrl" value={name} onChange={(e)=>{this.props.onChangeSelectedField("name",e.target.value)}} />
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="columns small-3">
+              <label>Label: </label>
+            </div>
+            <div className="columns small-9">
+              <input type="text" className="smallCtrl" value={label} onChange={(e)=>{this.props.onChangeSelectedField("label",e.target.value)}} />
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="columns small-3">
+              <label>On Change: </label>
+            </div>
+            <div className="columns small-9">
+              <textarea type="text" className="smallCtrl" value={onChange} onChange={(e)=>{this.props.onChangeSelectedField("onChange",e.target.value)}} />
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="columns small-3">
+              <label>Type: </label>
+            </div>
+            <div className="columns small-9">
+              <select onChange={(e)=>{this.props.onChangeSelectedField("type",e.target.value)}} value={type} className="smallCtrl">
+                <option value="text" selected={type == "text"}>Text</option>
+                <option value="date" selected={type == "date"}>Date</option>
+                <option value="datetime" selected={type == "datetime"}>Date Time</option>
+                <option value="number" selected={type == "number"}>Number</option>
+                <option value="email" selected={type == "email"}>Email</option>
+                <option value="checkbox" selected={type == "checkbox"}>Checkbox</option>
+                <option value="image" selected={type == "image"}>Image</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="columns small-7">
+              <label>Mobile Device Width (Max = 12): </label>
+            </div>
+            <div className="columns small-5">
+              <input type="number" className="smallCtrl" value={colxs} onChange={(e)=>{this.props.onChangeSelectedField("colxs",e.target.value);}} />
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="columns small-7">
+              <label>Tablet Device Width (Max = 12): </label>
+            </div>
+            <div className="columns small-5">
+              <input type="number" className="smallCtrl" value={colsm} onChange={(e)=>{this.props.onChangeSelectedField("colsm",e.target.value);}} />
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="columns small-7">
+              <label>Desktop Device Width (Max = 12): </label>
+            </div>
+            <div className="columns small-5">
+              <input type="number" className="smallCtrl" value={colmd} onChange={(e)=>{this.props.onChangeSelectedField("colmd",e.target.value);}} />
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="columns small-3">
+              <label>Style: </label>
+            </div>
+            <div className="columns small-9">
+              <input type="text" className="smallCtrl" value={style} onChange={(e)=>{this.props.onChangeSelectedField("style",e.target.value);}} />
+            </div>
+          </div>
+
+          {img}
+          <input type="button" className="button alert" onClick={()=>{this.props.removeSelectedField();}} value="Remove Field" />
         </div>
       );
     }

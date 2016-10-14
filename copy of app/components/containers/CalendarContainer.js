@@ -108,7 +108,7 @@ class CalendarContainer extends React.Component{
   render(){
     if(this.state.view == "calendar"){
       this.view = <div className="row">
-        <div className="col-sm-12 col-xs-12 col-md-12">
+        <div className="medium-12 small-12 large-12">
           <Calendar
             month={this.state.month}
             day={this.state.day}
@@ -126,7 +126,7 @@ class CalendarContainer extends React.Component{
     }else if(this.state.view == "reservation"){
       this.view = <div>
         <div className="row">
-          <div className="col-sm-12 col-xs-12 col-md-12">
+          <div className="medium-12 small-12 large-12">
             <ContactContainer
               addContact={this.addContact}
               contacts={this.state.contacts}
@@ -134,7 +134,7 @@ class CalendarContainer extends React.Component{
           </div>
         </div>
         <div className="row">
-          <div className="col-sm-12 col-xs-12 col-md-12">
+          <div className="medium-12 small-12 large-12">
             <WeeklyReservationBreakdown
               locations={this.props.locations}
               selectedWeek={this.state.selectedWeek}
@@ -146,7 +146,7 @@ class CalendarContainer extends React.Component{
           </div>
         </div>
         <div className="row">
-          <div className="col-sm-12 col-xs-12 col-md-12">
+          <div className="medium-12 small-12 large-12">
             <ReservationContainer
               reservations={this.state.selectedReservations}
               contacts={this.state.contacts}

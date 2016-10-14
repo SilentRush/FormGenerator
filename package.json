@@ -1,7 +1,7 @@
 {
-  "name": "crmportal",
+  "name": "FormGenerator",
   "version": "1.0.0",
-  "description": "CRM Portal",
+  "description": "Form Generator",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --content-base public --inline --hot",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "(git://github.com/SilentRush/crmportal.git)"
+    "url": "(git://github.com/SilentRush/FormGenerator.git)"
   },
   "keywords": [
     "npm"
@@ -24,6 +24,7 @@
     "babel-preset-react": "^6.11.1",
     "draft-js": "^0.7.0",
     "draft-js-prism": "^1.0.3",
+    "foundation-sites": "^6.2.4-rc1",
     "history": "^1.17.0",
     "immutable": "^3.8.1",
     "lodash": "^4.6.1",

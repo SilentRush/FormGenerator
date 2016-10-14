@@ -17,7 +17,7 @@ class Layout extends React.Component{
     return (
       <div>
         <Nav location={location} />
-        <div className="container-fluid" style={containerStyle}>
+        <div>
           {this.props.children}
         </div>
       </div>
