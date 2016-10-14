@@ -1,3 +1,29 @@
+.template .row {
+  border: 1px solid #eaeaea;
+  min-height: 2.75rem;
+}
+.template .row:not(:first-child) {
+  border: 1px solid #eaeaea;
+  border-top:0px;
+  min-height: 2.75rem;
+}
+.accordion-contentCustom{
+  padding: .25rem !important;
+  width: 100%;
+}
+.template .spacer{
+  border: 1px solid #eaeaea;
+  height: 100%;
+}
+.toolbarBtn{
+  cursor:move !important;
+  width:100% !important;
+  padding: 0.85em 0.2em !important;
+  margin-bottom: .4rem !important;
+}
+.is-active .accordion-content{
+  display:inline-block;
+}
 .smallCtrl{
   font-size: .9rem !important;
   height: 1.6rem !important;

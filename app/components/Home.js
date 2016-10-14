@@ -21,8 +21,14 @@ export default class Home extends React.Component{
           "bop":["x"],
           "Name":"Test Document"
         },
+        "pkl":"",
         "NumOfHouses":5
+      },
+      "picklists":{
+        "test":["","item1","item2","item3","item4"],
+        "states":["","MO","CA","IL","NY"]
       }
+
     };
 
     this.onSelectField = (field) => {
@@ -41,7 +47,6 @@ export default class Home extends React.Component{
     }
 
     this.changeDisplayMode = (mode) => {
-      console.log(mode);
       this.setState({displayMode:mode});
     }
 
@@ -50,29 +55,47 @@ export default class Home extends React.Component{
     }
     this.onDrop = (e) => {
       let type = e.dataTransfer.getData("type");
-      let field;
       let {numFields} = this.state;
+      let field = {id:numFields + 1,name:"field" + "numFields + 1",label:"Field" + (numFields + 1) + ": ",style:"",colxs:12,colsm:4,colmd:3,binding:"",onChange:""};;
+
       switch(type){
         case "text":
-          field = {id:numFields + 1,name:"field1",type:"text",label:"Text: ",style:"",colxs:12,colsm:4,colmd:3};
+          field.type = "text";
+          break;
+        case "textarea":
+          field.type = "textarea";
+          break;
+        case "picklist":
+          field.type = "picklist";
+          field.picklist = [""];
           break;
         case "date":
-          field = {id:numFields + 1,name:"field2",type:"date",label:"Date: ",style:"",colxs:12,colsm:4,colmd:3};
+          field.type = "date";
           break;
         case "number":
-          field = {id:numFields + 1,name:"field3",type:"number",label:"Number: ",style:"",colxs:12,colsm:4,colmd:3};
+          field.type = "number";
           break;
         case "email":
-          field = {id:numFields + 1,name:"field4",type:"email",label:"Email: ",style:"",colxs:12,colsm:4,colmd:3};
+          field.type = "email";
           break;
         case "datetime":
-          field = {id:numFields + 1,name:"field5",type:"datetime",label:"Date Time: ",style:"",colxs:12,colsm:4,colmd:3};
+          field.type = "datetime";
           break;
         case "checkbox":
-          field = {id:numFields + 1,name:"field6",type:"checkbox",label:"Checkbox: ",style:"",colxs:12,colsm:4,colmd:3};
+          field.type = "checkbox";
           break;
         case "image":
-          field = {id:numFields + 1,name:"field6",type:"image",label:"Image: ",style:"",src:"https://steamcommunity-a.akamaihd.net/public/images/sharedfiles/steam_workshop_default_image.png",colxs:12,colsm:4,colmd:3};
+          field.type = "image";
+          field.src = "https://steamcommunity-a.akamaihd.net/public/images/sharedfiles/steam_workshop_default_image.png";
+          break;
+        case "spacer":
+          field.type = "spacer";
+          break;
+        case "linebreak":
+          field.type = "linebreak";
+          field.colxs = 12;
+          field.colsm = 12;
+          field.colmd = 12;
           break;
         default:
           field = null;
@@ -83,7 +106,6 @@ export default class Home extends React.Component{
         var currRow = fields[fields.length - 1];
         var rowLength = 0;
         currRow.filter((row)=>{rowLength += row.colmd;});
-        console.log(rowLength);
         if(rowLength + field.colmd <= 12){
           field.row = fields.length;
           fields[fields.length - 1].push(field);
@@ -114,7 +136,8 @@ export default class Home extends React.Component{
       var fields = this.state.fields;
       if(fields.length > 1){
         var removedFields = fields[fields.length - 1];
-        fields[fields.length - 2] = fields[fields.length - 2].concat(removedFields);
+        removedFields.filter((f)=>{f.row=fields.length - 2})
+        //fields[fields.length - 2] = fields[fields.length - 2].concat(removedFields);
         console.log(fields);
         fields.pop();
         this.setState({fields:fields});
@@ -259,10 +282,10 @@ export default class Home extends React.Component{
   render(){
     return (
       <div className="row">
-        <div className="small-12 medium-8 large-8 columns" onDrop={this.onDrop} onDragOver={this.onDragOver} style={{minHeight:"500px"}}>
-          <h2>Template Layout</h2>
-          <ParseFields getProperty={this.getProperty} document={this.state.document} onUpdateDocument={this.onUpdateDocument} fields={this.state.fields} onSelectField={this.onSelectField} displayMode={this.state.displayMode} selectedField={this.state.selectedField} />
-        </div>
+          <div className="small-12 medium-8 large-8 columns template" onDrop={this.onDrop} onDragOver={this.onDragOver} style={{minHeight:"500px"}}>
+            <h2>Template Layout</h2>
+            <ParseFields picklists={this.state.picklists} getProperty={this.getProperty} document={this.state.document} onUpdateDocument={this.onUpdateDocument} fields={this.state.fields} onSelectField={this.onSelectField} displayMode={this.state.displayMode} selectedField={this.state.selectedField} />
+          </div>
         <div className="small-12 medium-4 large-4 columns">
           <div className="row">
             <div className="small-12 medium-12 large-12 columns" style={{paddingBottom:"15px"}}>
@@ -273,10 +296,12 @@ export default class Home extends React.Component{
                 <option value="desktop" selected={this.state.displayMode == "desktop"}>Desktop</option>
               </select>
             </div>
+          </div>
+          <div className="row">
             <Toolbar onDrag={this.onDrag} addRow={this.addRow} removeRow={this.removeRow} />
           </div>
           <div className="row">
-            <SelectedField selectedField={this.state.selectedField} onChangeSelectedField={this.onChangeSelectedField} onChangeFieldRow={this.onChangeFieldRow} deSelectField={this.deSelectField} removeSelectedField={this.removeSelectedField} rows={this.state.fields.length} />
+            <SelectedField picklists={this.state.picklists} selectedField={this.state.selectedField} onChangeSelectedField={this.onChangeSelectedField} onChangeFieldRow={this.onChangeFieldRow} deSelectField={this.deSelectField} removeSelectedField={this.removeSelectedField} rows={this.state.fields.length} />
           </div>
         </div>
       </div>
@@ -320,15 +345,35 @@ class ParseFields extends React.Component {
               switch(field.type){
                 case "text":
                   f = (
-                        <div onClick={()=>{this.props.onSelectField(field.id)}}>
+                        <div>
                           <label>{field.label}</label>
                           <input type="text" className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.document,field.binding)}  />
                         </div>
                        )
                   break;
+                case "textarea":
+                  f = (
+                        <div>
+                          <label>{field.label}</label>
+                          <textarea type="text" className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.document,field.binding)}></textarea>
+                        </div>
+                       )
+                  break;
+                case "picklist":
+                  var picklist;
+                  if(this.props.getProperty(this.props.picklists,field.picklist))picklist = this.props.getProperty(this.props.picklists,field.picklist).map((item)=>{return (<option>{item}</option>)})
+                  f = (
+                        <div>
+                          <label>{field.label}</label>
+                          <select className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.document,field.binding)}>
+                            {picklist}
+                          </select>
+                        </div>
+                       )
+                  break;
                 case "date":
                   f = (
-                        <div onClick={()=>{this.props.onSelectField(field.id)}}>
+                        <div>
                           <label>{field.label}</label>
                           <input type="date" className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.document,field.binding)}  />
                         </div>
@@ -336,7 +381,7 @@ class ParseFields extends React.Component {
                   break;
                 case "number":
                   f = (
-                        <div onClick={()=>{this.props.onSelectField(field.id)}}>
+                        <div>
                           <label>{field.label}</label>
                           <input type="number" className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.document,field.binding)}  />
                         </div>
@@ -344,7 +389,7 @@ class ParseFields extends React.Component {
                   break;
                 case "email":
                   f = (
-                        <div onClick={()=>{this.props.onSelectField(field.id)}}>
+                        <div>
                           <label>{field.label}</label>
                           <input type="email" className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.document,field.binding)}  />
                         </div>
@@ -352,7 +397,7 @@ class ParseFields extends React.Component {
                   break;
                 case "datetime":
                   f = (
-                        <div onClick={()=>{this.props.onSelectField(field.id)}}>
+                        <div>
                           <label>{field.label}</label>
                           <input type="datetime-local" className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.document,field.binding)}  />
                         </div>
@@ -360,21 +405,35 @@ class ParseFields extends React.Component {
                   break;
                 case "checkbox":
                   f = (
-                        <div className="checkbox" onClick={()=>{this.props.onSelectField(field.id)}}>
+                        <div className="checkbox">
                           <label><input type="checkbox" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.document,field.binding)}  />{field.label}</label>
                         </div>
                        )
                   break;
                 case "image":
                   f = (
-                        <div onClick={()=>{this.props.onSelectField(field.id)}}>
+                        <div>
                           <img src={field.src} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.document,field.binding)} />
+                        </div>
+                       )
+                  break;
+                case "spacer":
+                  f = (
+                        <div className="spacer" onClick={()=>{this.props.onSelectField(field.id)}}>
+                          &nbsp;
+                        </div>
+                       )
+                  break;
+                case "linebreak":
+                  f = (
+                        <div className="linebreak" onClick={()=>{this.props.onSelectField(field.id)}}>
+                          <hr />
                         </div>
                        )
                   break;
                 default:
                   f = (
-                        <div onClick={()=>{this.props.onSelectField(field.id)}}>
+                        <div>
                           <label>{field.label}</label>
                           <input type="text" className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.document,field.binding)}  />
                         </div>
@@ -382,7 +441,7 @@ class ParseFields extends React.Component {
                   break;
               }
               return (
-                <div className={"field columns small-" + field[colWidth] + " " + "medium-" + field[colWidth] + " " + "large-" + field[colWidth] + " " + selected} key={field.id}>
+                <div className={"field columns small-" + field[colWidth] + " " + "medium-" + field[colWidth] + " " + "large-" + field[colWidth] + " " + selected} key={field.id} onClick={()=>{this.props.onSelectField(field.id)}}>
                   {f}
                 </div>
               );
@@ -400,19 +459,50 @@ class ParseFields extends React.Component {
 class Toolbar extends React.Component {
   constructor(props){
     super(props);
+    this.state = {isActiveIndex:null};
+    this.getActive = (index) => {
+      if(index == this.state.isActiveIndex)
+        return "is-active";
+    };
+    this.updateActive = (index) => {
+      if(index == this.state.isActiveIndex)
+        this.setState({isActiveIndex:null});
+      else
+        this.setState({isActiveIndex:index});
+    };
   }
 
   render(){
+    var toolbarBtnClasses = "button hollow toolbarBtn";
     return (
-      <div>
-        <div>
-          <div draggable="true" className="small-6 medium-4 large-4 columns" onDragStart={this.props.onDrag} data-type="text" style={{paddingLeft: "0.3rem",paddingRight: "0.3rem"}}><button type="button" className="button hollow" style={{cursor:"move",width:"100%",padding: "0.85em 0.2em"}}>Text Input</button></div>
-          <div draggable="true" className="small-6 medium-4 large-4 columns" onDragStart={this.props.onDrag}  data-type="date" style={{paddingLeft: "0.3rem",paddingRight: "0.3rem"}}><button type="button" className="button hollow" style={{cursor:"move",width:"100%",padding: "0.85em 0.2em"}}>Date Input</button></div>
-          <div draggable="true" className="small-6 medium-4 large-4 columns" onDragStart={this.props.onDrag}  data-type="datetime" style={{paddingLeft: "0.3rem",paddingRight: "0.3rem"}}><button type="button" className="button hollow" style={{cursor:"move",width:"100%",padding: "0.85em 0.2em"}}>Datetime Input</button></div>
-          <div draggable="true" className="small-6 medium-4 large-4 columns" onDragStart={this.props.onDrag}  data-type="number" style={{paddingLeft: "0.3rem",paddingRight: "0.3rem"}}><button type="button" className="button hollow" style={{cursor:"move",width:"100%",padding: "0.85em 0.2em"}}>Number Input</button></div>
-          <div draggable="true" className="small-6 medium-4 large-4 columns" onDragStart={this.props.onDrag}  data-type="checkbox" style={{paddingLeft: "0.3rem",paddingRight: "0.3rem"}}><button type="button" className="button hollow" style={{cursor:"move",width:"100%",padding: "0.85em 0.2em"}}>Checkbox Input</button></div>
-          <div draggable="true" className="small-6 medium-4 large-4 columns" onDragStart={this.props.onDrag}  data-type="image" style={{paddingLeft: "0.3rem",paddingRight: "0.3rem"}}><button type="button" className="button hollow" style={{cursor:"move",width:"100%",padding: "0.85em 0.2em"}}>Image</button></div>
-        </div>
+      <div className="small-12 medium-12 large-12 columns">
+        <ul className="accordion">
+          <li className={"accordion-item " + this.getActive(0)}  onClick={()=>{this.updateActive(0)}}>
+            <a href="#" className="accordion-title">Input Controls</a>
+            <div className="accordion-content accordion-contentCustom">
+              <div draggable="true" className="small-6 medium-4 large-4 columns" onDragStart={this.props.onDrag} data-type="text" style={{paddingLeft: "0.3rem",paddingRight: "0.3rem"}}><button type="button" className={toolbarBtnClasses}>Text Input</button></div>
+              <div draggable="true" className="small-6 medium-4 large-4 columns" onDragStart={this.props.onDrag} data-type="textarea" style={{paddingLeft: "0.3rem",paddingRight: "0.3rem"}}><button type="button" className={toolbarBtnClasses}>Text Area</button></div>
+              <div draggable="true" className="small-6 medium-4 large-4 columns" onDragStart={this.props.onDrag} data-type="picklist" style={{paddingLeft: "0.3rem",paddingRight: "0.3rem"}}><button type="button" className={toolbarBtnClasses}>Picklist</button></div>
+              <div draggable="true" className="small-6 medium-4 large-4 columns" onDragStart={this.props.onDrag}  data-type="date" style={{paddingLeft: "0.3rem",paddingRight: "0.3rem"}}><button type="button" className={toolbarBtnClasses}>Date Input</button></div>
+              <div draggable="true" className="small-6 medium-4 large-4 columns" onDragStart={this.props.onDrag}  data-type="datetime" style={{paddingLeft: "0.3rem",paddingRight: "0.3rem"}}><button type="button" className={toolbarBtnClasses}>Datetime Input</button></div>
+              <div draggable="true" className="small-6 medium-4 large-4 columns" onDragStart={this.props.onDrag}  data-type="number" style={{paddingLeft: "0.3rem",paddingRight: "0.3rem"}}><button type="button" className={toolbarBtnClasses}>Number Input</button></div>
+              <div draggable="true" className="small-6 medium-4 large-4 columns" onDragStart={this.props.onDrag}  data-type="checkbox" style={{paddingLeft: "0.3rem",paddingRight: "0.3rem"}}><button type="button" className={toolbarBtnClasses}>Checkbox Input</button></div>
+            </div>
+          </li>
+          <li className={"accordion-item " + this.getActive(1)} onClick={()=>{this.updateActive(1)}}>
+            <a href="#" className="accordion-title">Media Controls</a>
+            <div className="accordion-content accordion-contentCustom" data-tab-content>
+              <div draggable="true" className="small-6 medium -4 large-4 columns" onDragStart={this.props.onDrag}  data-type="image" style={{paddingLeft: "0.3rem",paddingRight: "0.3rem"}}><button type="button" className={toolbarBtnClasses}>Image</button></div>
+            </div>
+          </li>
+          <li className={"accordion-item " + this.getActive(2)} onClick={()=>{this.updateActive(2)}}>
+            <a href="#" className="accordion-title">Form Controls</a>
+            <div className="accordion-content accordion-contentCustom" data-tab-content>
+              <div draggable="true" className="small-6 medium -4 large-4 columns" onDragStart={this.props.onDrag}  data-type="spacer" style={{paddingLeft: "0.3rem",paddingRight: "0.3rem"}}><button type="button" className={toolbarBtnClasses}>Spacer</button></div>
+              <div draggable="true" className="small-6 medium -4 large-4 columns" onDragStart={this.props.onDrag}  data-type="linebreak" style={{paddingLeft: "0.3rem",paddingRight: "0.3rem"}}><button type="button" className={toolbarBtnClasses}>Line Break</button></div>
+            </div>
+          </li>
+        </ul>
         <div>
           <button type="text" className="button primary" onClick={()=>{this.props.addRow()}}>Add Row</button>
           <button type="text" className="button alert" onClick={()=>{this.props.removeRow()}}>Remove Row</button>
@@ -428,10 +518,10 @@ class SelectedField extends React.Component {
   }
 
   render(){
-    let {id,label,name,type,colmd,colsm,colxs,src,style,row,onChange,binding} = this.props.selectedField;
+    let {id,label,name,type,colmd,colsm,colxs,src,style,row,onChange,binding,picklist} = this.props.selectedField;
     var output;
     if(this.props.selectedField && this.props.selectedField.id){
-      var img = "";
+      var img = "", pkl = "";
       if(type == "image")
         img = (<div className="row">
           <div className="columns small-3">
@@ -441,6 +531,22 @@ class SelectedField extends React.Component {
             <input type="text" className="smallCtrl" value={src} onChange={(e)=>{this.props.onChangeSelectedField("src",e.target.value);}} />
           </div>
         </div>);
+
+      if(type == "picklist"){
+        let items = [(<option></option>)];
+        for(var key in this.props.picklists){if(this.props.picklists.hasOwnProperty(key))items.push((<option selected={picklist == key} value={key}>{key}</option>))};
+        pkl = (<div className="row">
+          <div className="columns small-3">
+            <label>Picklist: </label>
+          </div>
+          <div className="columns small-9">
+            <select className="smallCtrl" value={picklist} onChange={(e)=>{this.props.onChangeSelectedField("picklist",e.target.value);}}>
+              {items}
+            </select>
+          </div>
+        </div>);
+      }
+
       output = (
         <div>
           <h3>Selected Field</h3>
@@ -464,6 +570,8 @@ class SelectedField extends React.Component {
               <input type="text" className="smallCtrl" value={binding} onChange={(e)=>{this.props.onChangeSelectedField("binding",e.target.value)}} />
             </div>
           </div>
+
+          {pkl}
 
           <div className="row">
             <div className="columns small-3">
@@ -499,12 +607,15 @@ class SelectedField extends React.Component {
             <div className="columns small-9">
               <select onChange={(e)=>{this.props.onChangeSelectedField("type",e.target.value)}} value={type} className="smallCtrl">
                 <option value="text" selected={type == "text"}>Text</option>
+                <option value="textarea" selected={type == "textarea"}>Text Area</option>
                 <option value="date" selected={type == "date"}>Date</option>
                 <option value="datetime" selected={type == "datetime"}>Date Time</option>
                 <option value="number" selected={type == "number"}>Number</option>
                 <option value="email" selected={type == "email"}>Email</option>
                 <option value="checkbox" selected={type == "checkbox"}>Checkbox</option>
                 <option value="image" selected={type == "image"}>Image</option>
+                <option value="spacer" selected={type == "spacer"}>Spacer</option>
+                <option value="linebreak" selected={type == "linebreak"}>Linebreak</option>
               </select>
             </div>
           </div>
