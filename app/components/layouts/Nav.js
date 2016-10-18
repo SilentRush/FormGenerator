@@ -10,10 +10,10 @@ export default class Nav extends React.Component{
     const homeClass = location.pathname === "/" ? "active" : "";
 
     return (
-      <ul className="vertical large-horizontal menu">
-        <li><Link to="/documents">Manage Documents</Link></li>
-        <li><Link to="/forms">Manage Forms</Link></li>
-        <li><Link to="/processes">Manage Processes</Link></li>
+      <ul className="menu vertical" id="navigationMenu">
+        <li data-close="offCanvas"><Link to="/documents"><i className="fi-page-copy"></i>Manage Documents</Link></li>
+        <li data-close="offCanvas"><Link to="/forms"><i className="fi-clipboard-pencil"></i>Manage Forms</Link></li>
+        <li data-close="offCanvas"><Link to="/processes"><i className="fi-loop"></i>Manage Processes</Link></li>
       </ul>
 
     );

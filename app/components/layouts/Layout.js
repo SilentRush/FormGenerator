@@ -11,6 +11,11 @@ class Layout extends React.Component{
     super(props);
   }
 
+  componentDidMount(){
+    let options = {};
+    var elem = new Foundation.OffCanvas($('#offCanvas'), options);
+  }
+
   render(){
     const { location } = this.props;
     const containerStyle = {marginTop: "60px"};
@@ -20,13 +25,15 @@ class Layout extends React.Component{
         <div className="off-canvas-wrapper">
           <div className="off-canvas-wrapper-inner" data-off-canvas-wrapper>
             <div className="off-canvas position-left" id="offCanvas" data-off-canvas>
-              <button className="close-button" aria-label="Close menu" type="button" data-close>
-                <span aria-hidden="true">&times;</span>
-              </button>
               <Nav location={location} />
             </div>
             <div className="off-canvas-content" data-off-canvas-content>
-              <button type="button" class="button" data-toggle="offCanvas">Open Menu</button>
+              <div className="title-bar">
+                <div className="title-bar-left">
+                  <button className="menu-icon" type="button" data-toggle="offCanvas"></button>
+                  <span className="title-bar-title">MENU</span>
+                </div>
+              </div>
               {this.props.children}
             </div>
           </div>

@@ -36,7 +36,7 @@ export default class SelectedField extends React.Component {
       }
 
       output = (
-        <div>
+        <div className="small-12 columns">
           <h3>Selected Field</h3>
           <input type="button" className="button warning" onClick={()=>{this.props.deSelectField();}} value="Deselect" /><br />
           <div className="row">

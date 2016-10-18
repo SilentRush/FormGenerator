@@ -1,3 +1,23 @@
+.title-bar-title {
+  padding: 5px;
+}
+#navigationMenu a{
+  color:#fefefe;
+  font-weight: bold;
+  line-height: 1;
+}
+#navigationMenu a:hover{
+  color:rgba(45, 176, 255, 0.6);
+}
+.js-off-canvas-exit {
+  background: rgba(0,0,0,0.25);
+}
+.off-canvas-wrapper {
+  background-color: #292929;
+}
+.off-canvas {
+  background-color: #292929;
+}
 .template .row {
   border: 1px solid #eaeaea;
   min-height: 2.75rem;
