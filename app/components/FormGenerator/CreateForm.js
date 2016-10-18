@@ -27,11 +27,29 @@ export default class CreateForm extends React.Component{
       "picklists":{
         "test":["","item1","item2","item3","item4"],
         "states":["","MO","CA","IL","NY"]
-      }
+      },
+      FormName:"",
+      DocumentType:"",
+      form:{}
 
     };
     this.exportJSON = () => {
-      console.log(this.state.fields);
+      var form = {};
+      let x = () =>
+        {
+            var text = "";
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+            for( var i=0; i < 5; i++ )
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+            return text;
+        };
+      form.id = x();
+      form.name = this.state.FormName;
+      form.documentType = this.state.DocumentType;
+      form.fields = this.state.fields;
+      this.setState({form:form},()=>{console.log(JSON.stringify(this.state.form))});
     }
     this.onSelectField = (field) => {
       var selectedField;
@@ -46,6 +64,14 @@ export default class CreateForm extends React.Component{
       if(selectedField){
         this.setState({selectedField:selectedField},()=>{console.log(this.state.selectedField)});
       }
+    }
+
+    this.changeFormName = (value) => {
+      this.setState({FormName:value});
+    }
+
+    this.changeDocumentType = (value) => {
+      this.setState({DocumentType:value});
     }
 
     this.changeDisplayMode = (mode) => {
@@ -291,11 +317,11 @@ export default class CreateForm extends React.Component{
             <div className="row">
               <div className="small-6 medium-6 large-6 columns">
                 <label>Form Name</label>
-                <input type="text" value={this.state.formName} onChange={(e)=>{this.changeFormName(e.target.value)}} />
+                <input type="text" value={this.state.FormName} onChange={(e)=>{this.changeFormName(e.target.value)}} />
               </div>
               <div className="small-6 medium-6 large-6 columns">
                 <label>Document Type</label>
-                <input type="text" value={this.state.formName} onChange={(e)=>{this.changeFormName(e.target.value)}} />
+                <input type="text" value={this.state.DocumentType} onChange={(e)=>{this.changeDocumentType(e.target.value)}} />
               </div>
             </div>
 

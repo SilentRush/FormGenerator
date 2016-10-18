@@ -1,3 +1,6 @@
+.accordion-title:hover, .accordion-title:focus {
+      background-color: rgba(230, 230, 230, 0.42);
+}
 .title-bar-title {
   padding: 5px;
 }
@@ -14,6 +17,9 @@
 }
 .off-canvas-wrapper {
   background-color: #292929;
+}
+.off-canvas-content {
+  min-height: 100vh;
 }
 .off-canvas {
   background-color: #292929;
