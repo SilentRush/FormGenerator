@@ -40178,11 +40178,23 @@
 
 	var _reactRouter = __webpack_require__(202);
 
-	var _Layout = __webpack_require__(265);
+	var _DocumentGenerator = __webpack_require__(263);
+
+	var _DocumentGenerator2 = _interopRequireDefault(_DocumentGenerator);
+
+	var _FormGenerator = __webpack_require__(264);
+
+	var _FormGenerator2 = _interopRequireDefault(_FormGenerator);
+
+	var _ProcessGenerator = __webpack_require__(269);
+
+	var _ProcessGenerator2 = _interopRequireDefault(_ProcessGenerator);
+
+	var _Layout = __webpack_require__(270);
 
 	var _Layout2 = _interopRequireDefault(_Layout);
 
-	var _Home = __webpack_require__(268);
+	var _Home = __webpack_require__(273);
 
 	var _Home2 = _interopRequireDefault(_Home);
 
@@ -40195,7 +40207,10 @@
 	  _react2.default.createElement(
 	    _reactRouter.Route,
 	    { path: "/", component: _Layout2.default },
-	    _react2.default.createElement(_reactRouter.IndexRoute, { component: _Home2.default })
+	    _react2.default.createElement(_reactRouter.IndexRoute, { component: _Home2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: "documents", component: _DocumentGenerator2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: "forms", component: _FormGenerator2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: "processes", component: _ProcessGenerator2.default })
 	  )
 	);
 
@@ -40241,85 +40256,85 @@
 	  }
 	});
 
-	var _Router2 = __webpack_require__(211);
+	var _Router2 = __webpack_require__(210);
 
 	var _Router3 = _interopRequireDefault(_Router2);
 
-	var _Link2 = __webpack_require__(242);
+	var _Link2 = __webpack_require__(241);
 
 	var _Link3 = _interopRequireDefault(_Link2);
 
-	var _IndexLink2 = __webpack_require__(243);
+	var _IndexLink2 = __webpack_require__(242);
 
 	var _IndexLink3 = _interopRequireDefault(_IndexLink2);
 
-	var _withRouter2 = __webpack_require__(244);
+	var _withRouter2 = __webpack_require__(243);
 
 	var _withRouter3 = _interopRequireDefault(_withRouter2);
 
-	var _IndexRedirect2 = __webpack_require__(246);
+	var _IndexRedirect2 = __webpack_require__(244);
 
 	var _IndexRedirect3 = _interopRequireDefault(_IndexRedirect2);
 
-	var _IndexRoute2 = __webpack_require__(248);
+	var _IndexRoute2 = __webpack_require__(246);
 
 	var _IndexRoute3 = _interopRequireDefault(_IndexRoute2);
 
-	var _Redirect2 = __webpack_require__(247);
+	var _Redirect2 = __webpack_require__(245);
 
 	var _Redirect3 = _interopRequireDefault(_Redirect2);
 
-	var _Route2 = __webpack_require__(249);
+	var _Route2 = __webpack_require__(247);
 
 	var _Route3 = _interopRequireDefault(_Route2);
 
-	var _History2 = __webpack_require__(250);
+	var _History2 = __webpack_require__(248);
 
 	var _History3 = _interopRequireDefault(_History2);
 
-	var _Lifecycle2 = __webpack_require__(251);
+	var _Lifecycle2 = __webpack_require__(249);
 
 	var _Lifecycle3 = _interopRequireDefault(_Lifecycle2);
 
-	var _RouteContext2 = __webpack_require__(252);
+	var _RouteContext2 = __webpack_require__(250);
 
 	var _RouteContext3 = _interopRequireDefault(_RouteContext2);
 
-	var _useRoutes2 = __webpack_require__(253);
+	var _useRoutes2 = __webpack_require__(251);
 
 	var _useRoutes3 = _interopRequireDefault(_useRoutes2);
 
-	var _RouterContext2 = __webpack_require__(239);
+	var _RouterContext2 = __webpack_require__(238);
 
 	var _RouterContext3 = _interopRequireDefault(_RouterContext2);
 
-	var _RoutingContext2 = __webpack_require__(254);
+	var _RoutingContext2 = __webpack_require__(252);
 
 	var _RoutingContext3 = _interopRequireDefault(_RoutingContext2);
 
 	var _PropTypes3 = _interopRequireDefault(_PropTypes2);
 
-	var _match2 = __webpack_require__(255);
+	var _match2 = __webpack_require__(253);
 
 	var _match3 = _interopRequireDefault(_match2);
 
-	var _useRouterHistory2 = __webpack_require__(259);
+	var _useRouterHistory2 = __webpack_require__(257);
 
 	var _useRouterHistory3 = _interopRequireDefault(_useRouterHistory2);
 
-	var _applyRouterMiddleware2 = __webpack_require__(260);
+	var _applyRouterMiddleware2 = __webpack_require__(258);
 
 	var _applyRouterMiddleware3 = _interopRequireDefault(_applyRouterMiddleware2);
 
-	var _browserHistory2 = __webpack_require__(261);
+	var _browserHistory2 = __webpack_require__(259);
 
 	var _browserHistory3 = _interopRequireDefault(_browserHistory2);
 
-	var _hashHistory2 = __webpack_require__(264);
+	var _hashHistory2 = __webpack_require__(262);
 
 	var _hashHistory3 = _interopRequireDefault(_hashHistory2);
 
-	var _createMemoryHistory2 = __webpack_require__(256);
+	var _createMemoryHistory2 = __webpack_require__(254);
 
 	var _createMemoryHistory3 = _interopRequireDefault(_createMemoryHistory2);
 
@@ -40804,7 +40819,7 @@
 	exports.getParams = getParams;
 	exports.formatPattern = formatPattern;
 
-	var _invariant = __webpack_require__(210);
+	var _invariant = __webpack_require__(195);
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
@@ -41013,79 +41028,21 @@
 /* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 */
-
-	'use strict';
-
-	/**
-	 * Use invariant() to assert state which your program assumes to be true.
-	 *
-	 * Provide sprintf-style format (only %s is supported) and arguments
-	 * to provide information about what broke and what you were
-	 * expecting.
-	 *
-	 * The invariant message will be stripped in production, but the invariant
-	 * will remain to ensure logic does not differ in production.
-	 */
-
-	var invariant = function(condition, format, a, b, c, d, e, f) {
-	  if (process.env.NODE_ENV !== 'production') {
-	    if (format === undefined) {
-	      throw new Error('invariant requires an error message argument');
-	    }
-	  }
-
-	  if (!condition) {
-	    var error;
-	    if (format === undefined) {
-	      error = new Error(
-	        'Minified exception occurred; use the non-minified dev environment ' +
-	        'for the full error message and additional helpful warnings.'
-	      );
-	    } else {
-	      var args = [a, b, c, d, e, f];
-	      var argIndex = 0;
-	      error = new Error(
-	        format.replace(/%s/g, function() { return args[argIndex++]; })
-	      );
-	      error.name = 'Invariant Violation';
-	    }
-
-	    error.framesToPop = 1; // we don't care about invariant's own frame
-	    throw error;
-	  }
-	};
-
-	module.exports = invariant;
-
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ },
-/* 211 */
-/***/ function(module, exports, __webpack_require__) {
-
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
 	exports.__esModule = true;
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _createHashHistory = __webpack_require__(212);
+	var _createHashHistory = __webpack_require__(211);
 
 	var _createHashHistory2 = _interopRequireDefault(_createHashHistory);
 
-	var _useQueries = __webpack_require__(228);
+	var _useQueries = __webpack_require__(227);
 
 	var _useQueries2 = _interopRequireDefault(_useQueries);
 
-	var _invariant = __webpack_require__(210);
+	var _invariant = __webpack_require__(195);
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
@@ -41093,19 +41050,19 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _createTransitionManager = __webpack_require__(231);
+	var _createTransitionManager = __webpack_require__(230);
 
 	var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 
 	var _InternalPropTypes = __webpack_require__(208);
 
-	var _RouterContext = __webpack_require__(239);
+	var _RouterContext = __webpack_require__(238);
 
 	var _RouterContext2 = _interopRequireDefault(_RouterContext);
 
 	var _RouteUtils = __webpack_require__(203);
 
-	var _RouterUtils = __webpack_require__(241);
+	var _RouterUtils = __webpack_require__(240);
 
 	var _routerWarning = __webpack_require__(206);
 
@@ -41298,7 +41255,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 212 */
+/* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -41309,25 +41266,25 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _warning = __webpack_require__(213);
+	var _warning = __webpack_require__(212);
 
 	var _warning2 = _interopRequireDefault(_warning);
 
-	var _invariant = __webpack_require__(210);
+	var _invariant = __webpack_require__(195);
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
-	var _Actions = __webpack_require__(214);
+	var _Actions = __webpack_require__(213);
 
-	var _PathUtils = __webpack_require__(215);
+	var _PathUtils = __webpack_require__(214);
 
-	var _ExecutionEnvironment = __webpack_require__(216);
+	var _ExecutionEnvironment = __webpack_require__(215);
 
-	var _DOMUtils = __webpack_require__(217);
+	var _DOMUtils = __webpack_require__(216);
 
-	var _DOMStateStorage = __webpack_require__(218);
+	var _DOMStateStorage = __webpack_require__(217);
 
-	var _createDOMHistory = __webpack_require__(219);
+	var _createDOMHistory = __webpack_require__(218);
 
 	var _createDOMHistory2 = _interopRequireDefault(_createDOMHistory);
 
@@ -41550,7 +41507,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 213 */
+/* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -41617,7 +41574,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 214 */
+/* 213 */
 /***/ function(module, exports) {
 
 	/**
@@ -41653,7 +41610,7 @@
 	};
 
 /***/ },
-/* 215 */
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -41664,7 +41621,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _warning = __webpack_require__(213);
+	var _warning = __webpack_require__(212);
 
 	var _warning2 = _interopRequireDefault(_warning);
 
@@ -41706,7 +41663,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 216 */
+/* 215 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -41716,7 +41673,7 @@
 	exports.canUseDOM = canUseDOM;
 
 /***/ },
-/* 217 */
+/* 216 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -41796,7 +41753,7 @@
 	}
 
 /***/ },
-/* 218 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/*eslint-disable no-empty */
@@ -41808,7 +41765,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _warning = __webpack_require__(213);
+	var _warning = __webpack_require__(212);
 
 	var _warning2 = _interopRequireDefault(_warning);
 
@@ -41875,7 +41832,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 219 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -41886,15 +41843,15 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _invariant = __webpack_require__(210);
+	var _invariant = __webpack_require__(195);
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
-	var _ExecutionEnvironment = __webpack_require__(216);
+	var _ExecutionEnvironment = __webpack_require__(215);
 
-	var _DOMUtils = __webpack_require__(217);
+	var _DOMUtils = __webpack_require__(216);
 
-	var _createHistory = __webpack_require__(220);
+	var _createHistory = __webpack_require__(219);
 
 	var _createHistory2 = _interopRequireDefault(_createHistory);
 
@@ -41921,7 +41878,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 220 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -41932,29 +41889,29 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _warning = __webpack_require__(213);
+	var _warning = __webpack_require__(212);
 
 	var _warning2 = _interopRequireDefault(_warning);
 
-	var _deepEqual = __webpack_require__(221);
+	var _deepEqual = __webpack_require__(220);
 
 	var _deepEqual2 = _interopRequireDefault(_deepEqual);
 
-	var _PathUtils = __webpack_require__(215);
+	var _PathUtils = __webpack_require__(214);
 
-	var _AsyncUtils = __webpack_require__(224);
+	var _AsyncUtils = __webpack_require__(223);
 
-	var _Actions = __webpack_require__(214);
+	var _Actions = __webpack_require__(213);
 
-	var _createLocation2 = __webpack_require__(225);
+	var _createLocation2 = __webpack_require__(224);
 
 	var _createLocation3 = _interopRequireDefault(_createLocation2);
 
-	var _runTransitionHook = __webpack_require__(226);
+	var _runTransitionHook = __webpack_require__(225);
 
 	var _runTransitionHook2 = _interopRequireDefault(_runTransitionHook);
 
-	var _deprecate = __webpack_require__(227);
+	var _deprecate = __webpack_require__(226);
 
 	var _deprecate2 = _interopRequireDefault(_deprecate);
 
@@ -42215,12 +42172,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 221 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var pSlice = Array.prototype.slice;
-	var objectKeys = __webpack_require__(222);
-	var isArguments = __webpack_require__(223);
+	var objectKeys = __webpack_require__(221);
+	var isArguments = __webpack_require__(222);
 
 	var deepEqual = module.exports = function (actual, expected, opts) {
 	  if (!opts) opts = {};
@@ -42315,7 +42272,7 @@
 
 
 /***/ },
-/* 222 */
+/* 221 */
 /***/ function(module, exports) {
 
 	exports = module.exports = typeof Object.keys === 'function'
@@ -42330,7 +42287,7 @@
 
 
 /***/ },
-/* 223 */
+/* 222 */
 /***/ function(module, exports) {
 
 	var supportsArgumentsClass = (function(){
@@ -42356,7 +42313,7 @@
 
 
 /***/ },
-/* 224 */
+/* 223 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -42419,7 +42376,7 @@
 	}
 
 /***/ },
-/* 225 */
+/* 224 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -42430,13 +42387,13 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _warning = __webpack_require__(213);
+	var _warning = __webpack_require__(212);
 
 	var _warning2 = _interopRequireDefault(_warning);
 
-	var _Actions = __webpack_require__(214);
+	var _Actions = __webpack_require__(213);
 
-	var _PathUtils = __webpack_require__(215);
+	var _PathUtils = __webpack_require__(214);
 
 	function createLocation() {
 	  var location = arguments.length <= 0 || arguments[0] === undefined ? '/' : arguments[0];
@@ -42476,7 +42433,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 226 */
+/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -42485,7 +42442,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _warning = __webpack_require__(213);
+	var _warning = __webpack_require__(212);
 
 	var _warning2 = _interopRequireDefault(_warning);
 
@@ -42506,7 +42463,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 227 */
+/* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -42515,7 +42472,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _warning = __webpack_require__(213);
+	var _warning = __webpack_require__(212);
 
 	var _warning2 = _interopRequireDefault(_warning);
 
@@ -42531,7 +42488,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 228 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -42542,19 +42499,19 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _warning = __webpack_require__(213);
+	var _warning = __webpack_require__(212);
 
 	var _warning2 = _interopRequireDefault(_warning);
 
-	var _queryString = __webpack_require__(229);
+	var _queryString = __webpack_require__(228);
 
-	var _runTransitionHook = __webpack_require__(226);
+	var _runTransitionHook = __webpack_require__(225);
 
 	var _runTransitionHook2 = _interopRequireDefault(_runTransitionHook);
 
-	var _PathUtils = __webpack_require__(215);
+	var _PathUtils = __webpack_require__(214);
 
-	var _deprecate = __webpack_require__(227);
+	var _deprecate = __webpack_require__(226);
 
 	var _deprecate2 = _interopRequireDefault(_deprecate);
 
@@ -42713,11 +42670,11 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 229 */
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var strictUriEncode = __webpack_require__(230);
+	var strictUriEncode = __webpack_require__(229);
 
 	exports.extract = function (str) {
 		return str.split('?')[1] || '';
@@ -42785,7 +42742,7 @@
 
 
 /***/ },
-/* 230 */
+/* 229 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -42797,7 +42754,7 @@
 
 
 /***/ },
-/* 231 */
+/* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -42812,21 +42769,21 @@
 
 	var _routerWarning2 = _interopRequireDefault(_routerWarning);
 
-	var _computeChangedRoutes2 = __webpack_require__(232);
+	var _computeChangedRoutes2 = __webpack_require__(231);
 
 	var _computeChangedRoutes3 = _interopRequireDefault(_computeChangedRoutes2);
 
-	var _TransitionUtils = __webpack_require__(233);
+	var _TransitionUtils = __webpack_require__(232);
 
-	var _isActive2 = __webpack_require__(235);
+	var _isActive2 = __webpack_require__(234);
 
 	var _isActive3 = _interopRequireDefault(_isActive2);
 
-	var _getComponents = __webpack_require__(236);
+	var _getComponents = __webpack_require__(235);
 
 	var _getComponents2 = _interopRequireDefault(_getComponents);
 
-	var _matchRoutes = __webpack_require__(238);
+	var _matchRoutes = __webpack_require__(237);
 
 	var _matchRoutes2 = _interopRequireDefault(_matchRoutes);
 
@@ -43105,7 +43062,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 232 */
+/* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43187,7 +43144,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 233 */
+/* 232 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -43197,7 +43154,7 @@
 	exports.runChangeHooks = runChangeHooks;
 	exports.runLeaveHooks = runLeaveHooks;
 
-	var _AsyncUtils = __webpack_require__(234);
+	var _AsyncUtils = __webpack_require__(233);
 
 	var _routerWarning = __webpack_require__(206);
 
@@ -43315,7 +43272,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 234 */
+/* 233 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -43408,7 +43365,7 @@
 	}
 
 /***/ },
-/* 235 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43565,16 +43522,16 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 236 */
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _AsyncUtils = __webpack_require__(234);
+	var _AsyncUtils = __webpack_require__(233);
 
-	var _makeStateWithLocation = __webpack_require__(237);
+	var _makeStateWithLocation = __webpack_require__(236);
 
 	var _makeStateWithLocation2 = _interopRequireDefault(_makeStateWithLocation);
 
@@ -43616,7 +43573,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 237 */
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -43671,7 +43628,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 238 */
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -43684,9 +43641,9 @@
 
 	exports.default = matchRoutes;
 
-	var _AsyncUtils = __webpack_require__(234);
+	var _AsyncUtils = __webpack_require__(233);
 
-	var _makeStateWithLocation = __webpack_require__(237);
+	var _makeStateWithLocation = __webpack_require__(236);
 
 	var _makeStateWithLocation2 = _interopRequireDefault(_makeStateWithLocation);
 
@@ -43928,7 +43885,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 239 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -43939,7 +43896,7 @@
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _invariant = __webpack_require__(210);
+	var _invariant = __webpack_require__(195);
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
@@ -43951,7 +43908,7 @@
 
 	var _deprecateObjectProperties2 = _interopRequireDefault(_deprecateObjectProperties);
 
-	var _getRouteParams = __webpack_require__(240);
+	var _getRouteParams = __webpack_require__(239);
 
 	var _getRouteParams2 = _interopRequireDefault(_getRouteParams);
 
@@ -44090,7 +44047,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 240 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44121,7 +44078,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 241 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -44159,7 +44116,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 242 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -44176,7 +44133,7 @@
 
 	var _routerWarning2 = _interopRequireDefault(_routerWarning);
 
-	var _invariant = __webpack_require__(210);
+	var _invariant = __webpack_require__(195);
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
@@ -44341,7 +44298,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 243 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44354,7 +44311,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Link = __webpack_require__(242);
+	var _Link = __webpack_require__(241);
 
 	var _Link2 = _interopRequireDefault(_Link);
 
@@ -44374,7 +44331,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 244 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -44385,7 +44342,7 @@
 
 	exports.default = withRouter;
 
-	var _invariant = __webpack_require__(210);
+	var _invariant = __webpack_require__(195);
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
@@ -44393,7 +44350,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _hoistNonReactStatics = __webpack_require__(245);
+	var _hoistNonReactStatics = __webpack_require__(194);
 
 	var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
 
@@ -44444,63 +44401,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 245 */
-/***/ function(module, exports) {
-
-	/**
-	 * Copyright 2015, Yahoo! Inc.
-	 * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
-	 */
-	'use strict';
-
-	var REACT_STATICS = {
-	    childContextTypes: true,
-	    contextTypes: true,
-	    defaultProps: true,
-	    displayName: true,
-	    getDefaultProps: true,
-	    mixins: true,
-	    propTypes: true,
-	    type: true
-	};
-
-	var KNOWN_STATICS = {
-	    name: true,
-	    length: true,
-	    prototype: true,
-	    caller: true,
-	    arguments: true,
-	    arity: true
-	};
-
-	var isGetOwnPropertySymbolsAvailable = typeof Object.getOwnPropertySymbols === 'function';
-
-	module.exports = function hoistNonReactStatics(targetComponent, sourceComponent, customStatics) {
-	    if (typeof sourceComponent !== 'string') { // don't hoist over string (html) components
-	        var keys = Object.getOwnPropertyNames(sourceComponent);
-
-	        /* istanbul ignore else */
-	        if (isGetOwnPropertySymbolsAvailable) {
-	            keys = keys.concat(Object.getOwnPropertySymbols(sourceComponent));
-	        }
-
-	        for (var i = 0; i < keys.length; ++i) {
-	            if (!REACT_STATICS[keys[i]] && !KNOWN_STATICS[keys[i]] && (!customStatics || !customStatics[keys[i]])) {
-	                try {
-	                    targetComponent[keys[i]] = sourceComponent[keys[i]];
-	                } catch (error) {
-
-	                }
-	            }
-	        }
-	    }
-
-	    return targetComponent;
-	};
-
-
-/***/ },
-/* 246 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -44515,11 +44416,11 @@
 
 	var _routerWarning2 = _interopRequireDefault(_routerWarning);
 
-	var _invariant = __webpack_require__(210);
+	var _invariant = __webpack_require__(195);
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
-	var _Redirect = __webpack_require__(247);
+	var _Redirect = __webpack_require__(245);
 
 	var _Redirect2 = _interopRequireDefault(_Redirect);
 
@@ -44569,7 +44470,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 247 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -44580,7 +44481,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _invariant = __webpack_require__(210);
+	var _invariant = __webpack_require__(195);
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
@@ -44677,7 +44578,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 248 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -44692,7 +44593,7 @@
 
 	var _routerWarning2 = _interopRequireDefault(_routerWarning);
 
-	var _invariant = __webpack_require__(210);
+	var _invariant = __webpack_require__(195);
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
@@ -44743,7 +44644,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 249 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -44754,7 +44655,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _invariant = __webpack_require__(210);
+	var _invariant = __webpack_require__(195);
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
@@ -44806,7 +44707,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 250 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -44841,7 +44742,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 251 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -44856,7 +44757,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _invariant = __webpack_require__(210);
+	var _invariant = __webpack_require__(195);
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
@@ -44915,7 +44816,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 252 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -44966,7 +44867,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 253 */
+/* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -44975,11 +44876,11 @@
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _useQueries = __webpack_require__(228);
+	var _useQueries = __webpack_require__(227);
 
 	var _useQueries2 = _interopRequireDefault(_useQueries);
 
-	var _createTransitionManager = __webpack_require__(231);
+	var _createTransitionManager = __webpack_require__(230);
 
 	var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 
@@ -45023,7 +44924,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 254 */
+/* 252 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -45034,7 +44935,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _RouterContext = __webpack_require__(239);
+	var _RouterContext = __webpack_require__(238);
 
 	var _RouterContext2 = _interopRequireDefault(_RouterContext);
 
@@ -45059,7 +44960,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 255 */
+/* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -45068,23 +44969,23 @@
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _Actions = __webpack_require__(214);
+	var _Actions = __webpack_require__(213);
 
-	var _invariant = __webpack_require__(210);
+	var _invariant = __webpack_require__(195);
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
-	var _createMemoryHistory = __webpack_require__(256);
+	var _createMemoryHistory = __webpack_require__(254);
 
 	var _createMemoryHistory2 = _interopRequireDefault(_createMemoryHistory);
 
-	var _createTransitionManager = __webpack_require__(231);
+	var _createTransitionManager = __webpack_require__(230);
 
 	var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 
 	var _RouteUtils = __webpack_require__(203);
 
-	var _RouterUtils = __webpack_require__(241);
+	var _RouterUtils = __webpack_require__(240);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -45148,7 +45049,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 256 */
+/* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45156,15 +45057,15 @@
 	exports.__esModule = true;
 	exports.default = createMemoryHistory;
 
-	var _useQueries = __webpack_require__(228);
+	var _useQueries = __webpack_require__(227);
 
 	var _useQueries2 = _interopRequireDefault(_useQueries);
 
-	var _useBasename = __webpack_require__(257);
+	var _useBasename = __webpack_require__(255);
 
 	var _useBasename2 = _interopRequireDefault(_useBasename);
 
-	var _createMemoryHistory = __webpack_require__(258);
+	var _createMemoryHistory = __webpack_require__(256);
 
 	var _createMemoryHistory2 = _interopRequireDefault(_createMemoryHistory);
 
@@ -45185,7 +45086,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 257 */
+/* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -45196,19 +45097,19 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _warning = __webpack_require__(213);
+	var _warning = __webpack_require__(212);
 
 	var _warning2 = _interopRequireDefault(_warning);
 
-	var _ExecutionEnvironment = __webpack_require__(216);
+	var _ExecutionEnvironment = __webpack_require__(215);
 
-	var _PathUtils = __webpack_require__(215);
+	var _PathUtils = __webpack_require__(214);
 
-	var _runTransitionHook = __webpack_require__(226);
+	var _runTransitionHook = __webpack_require__(225);
 
 	var _runTransitionHook2 = _interopRequireDefault(_runTransitionHook);
 
-	var _deprecate = __webpack_require__(227);
+	var _deprecate = __webpack_require__(226);
 
 	var _deprecate2 = _interopRequireDefault(_deprecate);
 
@@ -45349,7 +45250,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 258 */
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -45360,19 +45261,19 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _warning = __webpack_require__(213);
+	var _warning = __webpack_require__(212);
 
 	var _warning2 = _interopRequireDefault(_warning);
 
-	var _invariant = __webpack_require__(210);
+	var _invariant = __webpack_require__(195);
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
-	var _PathUtils = __webpack_require__(215);
+	var _PathUtils = __webpack_require__(214);
 
-	var _Actions = __webpack_require__(214);
+	var _Actions = __webpack_require__(213);
 
-	var _createHistory = __webpack_require__(220);
+	var _createHistory = __webpack_require__(219);
 
 	var _createHistory2 = _interopRequireDefault(_createHistory);
 
@@ -45509,7 +45410,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 259 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45517,11 +45418,11 @@
 	exports.__esModule = true;
 	exports.default = useRouterHistory;
 
-	var _useQueries = __webpack_require__(228);
+	var _useQueries = __webpack_require__(227);
 
 	var _useQueries2 = _interopRequireDefault(_useQueries);
 
-	var _useBasename = __webpack_require__(257);
+	var _useBasename = __webpack_require__(255);
 
 	var _useBasename2 = _interopRequireDefault(_useBasename);
 
@@ -45537,7 +45438,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 260 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -45550,7 +45451,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _RouterContext = __webpack_require__(239);
+	var _RouterContext = __webpack_require__(238);
 
 	var _RouterContext2 = _interopRequireDefault(_RouterContext);
 
@@ -45600,18 +45501,18 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 261 */
+/* 259 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _createBrowserHistory = __webpack_require__(262);
+	var _createBrowserHistory = __webpack_require__(260);
 
 	var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
 
-	var _createRouterHistory = __webpack_require__(263);
+	var _createRouterHistory = __webpack_require__(261);
 
 	var _createRouterHistory2 = _interopRequireDefault(_createRouterHistory);
 
@@ -45621,7 +45522,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 262 */
+/* 260 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -45632,21 +45533,21 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _invariant = __webpack_require__(210);
+	var _invariant = __webpack_require__(195);
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
-	var _Actions = __webpack_require__(214);
+	var _Actions = __webpack_require__(213);
 
-	var _PathUtils = __webpack_require__(215);
+	var _PathUtils = __webpack_require__(214);
 
-	var _ExecutionEnvironment = __webpack_require__(216);
+	var _ExecutionEnvironment = __webpack_require__(215);
 
-	var _DOMUtils = __webpack_require__(217);
+	var _DOMUtils = __webpack_require__(216);
 
-	var _DOMStateStorage = __webpack_require__(218);
+	var _DOMStateStorage = __webpack_require__(217);
 
-	var _createDOMHistory = __webpack_require__(219);
+	var _createDOMHistory = __webpack_require__(218);
 
 	var _createDOMHistory2 = _interopRequireDefault(_createDOMHistory);
 
@@ -45807,7 +45708,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 263 */
+/* 261 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45820,7 +45721,7 @@
 	  return history;
 	};
 
-	var _useRouterHistory = __webpack_require__(259);
+	var _useRouterHistory = __webpack_require__(257);
 
 	var _useRouterHistory2 = _interopRequireDefault(_useRouterHistory);
 
@@ -45831,18 +45732,18 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 264 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _createHashHistory = __webpack_require__(212);
+	var _createHashHistory = __webpack_require__(211);
 
 	var _createHashHistory2 = _interopRequireDefault(_createHashHistory);
 
-	var _createRouterHistory = __webpack_require__(263);
+	var _createRouterHistory = __webpack_require__(261);
 
 	var _createRouterHistory2 = _interopRequireDefault(_createRouterHistory);
 
@@ -45852,7 +45753,1418 @@
 	module.exports = exports['default'];
 
 /***/ },
+/* 263 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var DocumentGenerator = function (_React$Component) {
+	  _inherits(DocumentGenerator, _React$Component);
+
+	  function DocumentGenerator(props) {
+	    _classCallCheck(this, DocumentGenerator);
+
+	    var _this = _possibleConstructorReturn(this, (DocumentGenerator.__proto__ || Object.getPrototypeOf(DocumentGenerator)).call(this, props));
+
+	    _this.state = {};
+	    return _this;
+	  }
+
+	  _createClass(DocumentGenerator, [{
+	    key: "componentDidMount",
+	    value: function componentDidMount() {}
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        { className: "row" },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "small-12 medium-8 large-8 columns template", onDrop: this.onDrop, onDragOver: this.onDragOver, style: { minHeight: "500px" } },
+	          _react2.default.createElement(
+	            "h2",
+	            null,
+	            "Document Generator"
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return DocumentGenerator;
+	}(_react2.default.Component);
+
+	exports.default = DocumentGenerator;
+
+/***/ },
+/* 264 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _ParseFields = __webpack_require__(265);
+
+	var _ParseFields2 = _interopRequireDefault(_ParseFields);
+
+	var _SelectedField = __webpack_require__(266);
+
+	var _SelectedField2 = _interopRequireDefault(_SelectedField);
+
+	var _Toolbar = __webpack_require__(268);
+
+	var _Toolbar2 = _interopRequireDefault(_Toolbar);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var FormGenerator = function (_React$Component) {
+	  _inherits(FormGenerator, _React$Component);
+
+	  function FormGenerator(props) {
+	    _classCallCheck(this, FormGenerator);
+
+	    var _this = _possibleConstructorReturn(this, (FormGenerator.__proto__ || Object.getPrototypeOf(FormGenerator)).call(this, props));
+
+	    _this.state = { fields: [[]],
+	      numFields: 0,
+	      selectedField: {},
+	      displayMode: "desktop",
+	      document: {
+	        "Account": {
+	          "bop": ["x"],
+	          "Name": "Test Document"
+	        },
+	        "pkl": "",
+	        "NumOfHouses": 5,
+	        "testobj": {}
+	      },
+	      "picklists": {
+	        "test": ["", "item1", "item2", "item3", "item4"],
+	        "states": ["", "MO", "CA", "IL", "NY"]
+	      }
+
+	    };
+
+	    _this.onSelectField = function (field) {
+	      var selectedField;
+	      var select = _this.state.fields.filter(function (r) {
+	        var found = r.filter(function (f) {
+	          return f.id === field;
+	        });
+	        if (found[0]) selectedField = found[0];
+	        return found[0] != null;
+	      });
+	      if (selectedField) {
+	        _this.setState({ selectedField: selectedField }, function () {
+	          console.log(_this.state.selectedField);
+	        });
+	      }
+	    };
+
+	    _this.changeDisplayMode = function (mode) {
+	      _this.setState({ displayMode: mode });
+	    };
+
+	    _this.onDragOver = function (e) {
+	      e.preventDefault();
+	    };
+	    _this.onDrop = function (e) {
+	      var type = e.dataTransfer.getData("type");
+	      var numFields = _this.state.numFields;
+
+	      var field = { id: numFields + 1, name: "field" + (numFields + 1), label: "Field" + (numFields + 1) + ": ", style: "", colxs: 12, colsm: 4, colmd: 3, binding: "", onChange: "" };;
+
+	      switch (type) {
+	        case "text":
+	          field.type = "text";
+	          break;
+	        case "textarea":
+	          field.type = "textarea";
+	          break;
+	        case "picklist":
+	          field.type = "picklist";
+	          field.picklist = [""];
+	          break;
+	        case "date":
+	          field.type = "date";
+	          break;
+	        case "number":
+	          field.type = "number";
+	          break;
+	        case "email":
+	          field.type = "email";
+	          break;
+	        case "datetime":
+	          field.type = "datetime";
+	          break;
+	        case "checkbox":
+	          field.type = "checkbox";
+	          break;
+	        case "image":
+	          field.type = "image";
+	          field.src = "https://steamcommunity-a.akamaihd.net/public/images/sharedfiles/steam_workshop_default_image.png";
+	          break;
+	        case "spacer":
+	          field.type = "spacer";
+	          break;
+	        case "linebreak":
+	          field.type = "linebreak";
+	          field.colxs = 12;
+	          field.colsm = 12;
+	          field.colmd = 12;
+	          break;
+	        default:
+	          field = null;
+	          break;
+	      }
+	      if (field) {
+	        var fields = _this.state.fields;
+	        var currRow = fields[fields.length - 1];
+	        var rowLength = 0;
+	        currRow.filter(function (row) {
+	          rowLength += row.colmd;
+	        });
+	        if (rowLength + field.colmd <= 12) {
+	          field.row = fields.length;
+	          fields[fields.length - 1].push(field);
+	        } else {
+	          field.row = fields.length + 1;
+	          fields[fields.length] = [];
+	          fields[fields.length - 1].push(field);
+	        }
+
+	        _this.setState({ fields: fields, numFields: _this.state.numFields + 1 });
+	      }
+	    };
+	    _this.onDrag = function (e) {
+	      console.log(e.target.getAttribute("data-type"));
+	      e.dataTransfer.setData("type", e.target.getAttribute("data-type"));
+	    };
+
+	    _this.addRow = function () {
+	      var fields = _this.state.fields;
+	      fields.push([]);
+	      console.log(fields);
+	      _this.setState({ fields: fields });
+	    };
+
+	    _this.removeRow = function () {
+	      var fields = _this.state.fields;
+	      if (fields.length > 1) {
+	        var removedFields = fields[fields.length - 1];
+	        removedFields.filter(function (f) {
+	          f.row = fields.length - 2;
+	        });
+	        //fields[fields.length - 2] = fields[fields.length - 2].concat(removedFields);
+	        console.log(fields);
+	        fields.pop();
+	        _this.setState({ fields: fields });
+	      }
+	    };
+
+	    _this.onChangeSelectedField = function (type, value) {
+	      var field = _this.state.selectedField;
+	      field[type] = value;
+	      var fields = _this.state.fields;
+	      var newFields = fields.map(function (r) {
+	        var x = r.map(function (f) {
+	          if (f.id === field.id) return field;else return f;
+	        });
+	        return x;
+	      });
+	      _this.setState({ selectedField: field, fields: newFields });
+	    };
+
+	    _this.onChangeFieldRow = function (value) {
+	      var field = _this.state.selectedField;
+	      var oldRow = field.row - 1;
+	      var oldIndex;
+	      field.row = value;
+	      var fields = _this.state.fields;
+
+	      var newFields = fields.map(function (r) {
+	        var x = r.map(function (f, i) {
+	          if (f.id === field.id) {
+	            oldIndex = i;
+	            return field;
+	          } else return f;
+	        });
+	        return x;
+	      });
+
+	      fields[value - 1].push(field);
+	      fields[oldRow].splice(oldIndex, 1);
+
+	      _this.setState({ selectedField: field, fields: fields });
+	    };
+
+	    _this.updateProperty = function (obj, is, value) {
+	      if (is && is != "" && obj) {
+	        if (typeof is == 'string') return _this.updateProperty(obj, is.split('.'), value);else if (is.length == 1 && value !== undefined) {
+	          if (is[0].includes("[") || is[0].includes("]")) {
+	            var patt = /\[([0-9]+)\]/g;
+	            var res = patt.exec(is[0]);
+	            res = res[0].substring(1, res[0].length - 1);
+	            return obj[is[0].split("[")[0]][res] = value;
+	          } else {
+	            return obj[is[0]] = value;
+	          }
+	        } else if (is.length == 0) return obj;else {
+	          if (is[0].includes("[") || is[0].includes("]")) {
+	            var patt = /\[([0-9]+)\]/g;
+	            var res = patt.exec(is[0]);
+	            res = res[0].substring(1, res[0].length - 1);
+	            return _this.updateProperty(obj[is[0].split("[")[0]][res], is.slice(1), value);
+	          } else {
+	            return _this.updateProperty(obj[is[0]], is.slice(1), value);
+	          }
+	        }
+	      }
+	    };
+
+	    _this.getProperty = function (obj, is) {
+	      if (is && is != "" && obj) {
+	        if (typeof is == 'string') return _this.getProperty(obj, is.split('.'));else if (is.length == 1) {
+	          if (is[0].includes("[") || is[0].includes("]")) {
+	            var patt = /\[([0-9]+)\]/g;
+	            var res = patt.exec(is[0]);
+	            res = res[0].substring(1, res[0].length - 1);
+	            return obj[is[0].split("[")[0]][res];
+	          } else {
+	            return obj[is[0]];
+	          }
+	        } else if (is.length == 0) return obj;else {
+	          if (is[0].includes("[") || is[0].includes("]")) {
+	            var patt = /\[([0-9]+)\]/g;
+	            var res = patt.exec(is[0]);
+	            res = res[0].substring(1, res[0].length - 1);
+	            return _this.getProperty(obj[is[0].split("[")[0]][res], is.slice(1));
+	          } else {
+	            return _this.getProperty(obj[is[0]], is.slice(1));
+	          }
+	        }
+	      }
+	    };
+
+	    _this.onUpdateDocument = function (property, value, func) {
+	      var document = _this.state.document;
+	      if (property) _this.updateProperty(document, property, value);
+	      try {
+	        eval(func);
+	      } catch (err) {
+	        console.log(err.message);
+	      }
+	      _this.setState({ document: document }, function () {
+	        console.log(_this.state);
+	      });
+	    };
+
+	    _this.removeSelectedField = function () {
+	      var field = _this.state.selectedField;
+	      var fields = _this.state.fields;
+	      var newFields = fields.map(function (r, i) {
+	        var x = r.map(function (f, x) {
+	          if (f.id === field.id) {
+	            fields[i].splice(x, 1);
+	            return;
+	          } else return f;
+	        });
+	        return x;
+	      });
+	      _this.setState({ selectedField: {}, fields: fields });
+	    };
+
+	    _this.deSelectField = function () {
+	      _this.setState({ selectedField: {} });
+	    };
+	    return _this;
+	  }
+
+	  _createClass(FormGenerator, [{
+	    key: "componentDidMount",
+	    value: function componentDidMount() {}
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      var _this2 = this;
+
+	      return _react2.default.createElement(
+	        "div",
+	        { className: "row" },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "small-12 medium-8 large-8 columns template", onDrop: this.onDrop, onDragOver: this.onDragOver, style: { minHeight: "500px" } },
+	          _react2.default.createElement(
+	            "h2",
+	            null,
+	            "Template Layout"
+	          ),
+	          _react2.default.createElement(_ParseFields2.default, { picklists: this.state.picklists, getProperty: this.getProperty, document: this.state.document, onUpdateDocument: this.onUpdateDocument, fields: this.state.fields, onSelectField: this.onSelectField, displayMode: this.state.displayMode, selectedField: this.state.selectedField })
+	        ),
+	        _react2.default.createElement(
+	          "div",
+	          { className: "small-12 medium-4 large-4 columns" },
+	          _react2.default.createElement(
+	            "div",
+	            { className: "row" },
+	            _react2.default.createElement(
+	              "div",
+	              { className: "small-12 medium-12 large-12 columns", style: { paddingBottom: "15px" } },
+	              _react2.default.createElement(
+	                "label",
+	                null,
+	                "Display Mode"
+	              ),
+	              _react2.default.createElement(
+	                "select",
+	                { className: "form-control", value: this.state.displayMode, onChange: function onChange(e) {
+	                    _this2.changeDisplayMode(e.target.value);
+	                  } },
+	                _react2.default.createElement(
+	                  "option",
+	                  { value: "mobile", selected: this.state.displayMode == "mobile" },
+	                  "Mobile"
+	                ),
+	                _react2.default.createElement(
+	                  "option",
+	                  { value: "tablet", selected: this.state.displayMode == "tablet" },
+	                  "Tablet"
+	                ),
+	                _react2.default.createElement(
+	                  "option",
+	                  { value: "desktop", selected: this.state.displayMode == "desktop" },
+	                  "Desktop"
+	                )
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "row" },
+	            _react2.default.createElement(_Toolbar2.default, { onDrag: this.onDrag, addRow: this.addRow, removeRow: this.removeRow })
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "row" },
+	            _react2.default.createElement(_SelectedField2.default, { picklists: this.state.picklists, selectedField: this.state.selectedField, onChangeSelectedField: this.onChangeSelectedField, onChangeFieldRow: this.onChangeFieldRow, deSelectField: this.deSelectField, removeSelectedField: this.removeSelectedField, rows: this.state.fields.length })
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return FormGenerator;
+	}(_react2.default.Component);
+
+	exports.default = FormGenerator;
+
+/***/ },
 /* 265 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ParseFields = function (_React$Component) {
+	  _inherits(ParseFields, _React$Component);
+
+	  function ParseFields(props) {
+	    _classCallCheck(this, ParseFields);
+
+	    return _possibleConstructorReturn(this, (ParseFields.__proto__ || Object.getPrototypeOf(ParseFields)).call(this, props));
+	  }
+
+	  _createClass(ParseFields, [{
+	    key: "render",
+	    value: function render() {
+	      var _this2 = this;
+
+	      var colWidth;
+	      switch (this.props.displayMode) {
+	        case "mobile":
+	          colWidth = "colxs";
+	          break;
+	        case "tablet":
+	          colWidth = "colsm";
+	          break;
+	        case "desktop":
+	          colWidth = "colmd";
+	          break;
+	      }
+	      return _react2.default.createElement(
+	        "div",
+	        null,
+	        this.props.fields.map(function (row) {
+	          var r, fields;
+	          r = [];
+	          var x = _react2.default.createElement(
+	            "div",
+	            { className: "row" },
+	            row.map(function (field) {
+	              var f,
+	                  style,
+	                  selected = "";
+	              if (_this2.props.selectedField.id === field.id) selected = "selectedField";
+	              try {
+	                style = eval("({" + field.style + "})");
+	              } catch (e) {
+	                style = {};
+	              }
+	              switch (field.type) {
+	                case "text":
+	                  f = _react2.default.createElement(
+	                    "div",
+	                    null,
+	                    _react2.default.createElement(
+	                      "label",
+	                      null,
+	                      field.label
+	                    ),
+	                    _react2.default.createElement("input", { type: "text", className: "form-control", name: field.name, style: style, onChange: function onChange(e) {
+	                        _this2.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
+	                      }, value: _this2.props.getProperty(_this2.props.document, field.binding) })
+	                  );
+	                  break;
+	                case "textarea":
+	                  f = _react2.default.createElement(
+	                    "div",
+	                    null,
+	                    _react2.default.createElement(
+	                      "label",
+	                      null,
+	                      field.label
+	                    ),
+	                    _react2.default.createElement("textarea", { type: "text", className: "form-control", name: field.name, style: style, onChange: function onChange(e) {
+	                        _this2.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
+	                      }, value: _this2.props.getProperty(_this2.props.document, field.binding) })
+	                  );
+	                  break;
+	                case "picklist":
+	                  var picklist;
+	                  if (_this2.props.getProperty(_this2.props.picklists, field.picklist)) picklist = _this2.props.getProperty(_this2.props.picklists, field.picklist).map(function (item) {
+	                    return _react2.default.createElement(
+	                      "option",
+	                      null,
+	                      item
+	                    );
+	                  });
+	                  f = _react2.default.createElement(
+	                    "div",
+	                    null,
+	                    _react2.default.createElement(
+	                      "label",
+	                      null,
+	                      field.label
+	                    ),
+	                    _react2.default.createElement(
+	                      "select",
+	                      { className: "form-control", name: field.name, style: style, onChange: function onChange(e) {
+	                          _this2.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
+	                        }, value: _this2.props.getProperty(_this2.props.document, field.binding) },
+	                      picklist
+	                    )
+	                  );
+	                  break;
+	                case "date":
+	                  f = _react2.default.createElement(
+	                    "div",
+	                    null,
+	                    _react2.default.createElement(
+	                      "label",
+	                      null,
+	                      field.label
+	                    ),
+	                    _react2.default.createElement("input", { type: "date", className: "form-control", name: field.name, style: style, onChange: function onChange(e) {
+	                        _this2.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
+	                      }, value: _this2.props.getProperty(_this2.props.document, field.binding) })
+	                  );
+	                  break;
+	                case "number":
+	                  f = _react2.default.createElement(
+	                    "div",
+	                    null,
+	                    _react2.default.createElement(
+	                      "label",
+	                      null,
+	                      field.label
+	                    ),
+	                    _react2.default.createElement("input", { type: "number", className: "form-control", name: field.name, style: style, onChange: function onChange(e) {
+	                        _this2.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
+	                      }, value: _this2.props.getProperty(_this2.props.document, field.binding) })
+	                  );
+	                  break;
+	                case "email":
+	                  f = _react2.default.createElement(
+	                    "div",
+	                    null,
+	                    _react2.default.createElement(
+	                      "label",
+	                      null,
+	                      field.label
+	                    ),
+	                    _react2.default.createElement("input", { type: "email", className: "form-control", name: field.name, style: style, onChange: function onChange(e) {
+	                        _this2.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
+	                      }, value: _this2.props.getProperty(_this2.props.document, field.binding) })
+	                  );
+	                  break;
+	                case "datetime":
+	                  f = _react2.default.createElement(
+	                    "div",
+	                    null,
+	                    _react2.default.createElement(
+	                      "label",
+	                      null,
+	                      field.label
+	                    ),
+	                    _react2.default.createElement("input", { type: "datetime-local", className: "form-control", name: field.name, style: style, onChange: function onChange(e) {
+	                        _this2.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
+	                      }, value: _this2.props.getProperty(_this2.props.document, field.binding) })
+	                  );
+	                  break;
+	                case "checkbox":
+	                  f = _react2.default.createElement(
+	                    "div",
+	                    { className: "checkbox" },
+	                    _react2.default.createElement(
+	                      "label",
+	                      null,
+	                      _react2.default.createElement("input", { type: "checkbox", name: field.name, style: style, onChange: function onChange(e) {
+	                          _this2.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
+	                        }, value: _this2.props.getProperty(_this2.props.document, field.binding) }),
+	                      field.label
+	                    )
+	                  );
+	                  break;
+	                case "image":
+	                  f = _react2.default.createElement(
+	                    "div",
+	                    null,
+	                    _react2.default.createElement("img", { src: field.src, style: style, onChange: function onChange(e) {
+	                        _this2.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
+	                      }, value: _this2.props.getProperty(_this2.props.document, field.binding) })
+	                  );
+	                  break;
+	                case "spacer":
+	                  f = _react2.default.createElement(
+	                    "div",
+	                    { className: "spacer", onClick: function onClick() {
+	                        _this2.props.onSelectField(field.id);
+	                      } },
+	                    "\xA0"
+	                  );
+	                  break;
+	                case "linebreak":
+	                  f = _react2.default.createElement(
+	                    "div",
+	                    { className: "linebreak", onClick: function onClick() {
+	                        _this2.props.onSelectField(field.id);
+	                      } },
+	                    _react2.default.createElement("hr", null)
+	                  );
+	                  break;
+	                default:
+	                  f = _react2.default.createElement(
+	                    "div",
+	                    null,
+	                    _react2.default.createElement(
+	                      "label",
+	                      null,
+	                      field.label
+	                    ),
+	                    _react2.default.createElement("input", { type: "text", className: "form-control", name: field.name, style: style, onChange: function onChange(e) {
+	                        _this2.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
+	                      }, value: _this2.props.getProperty(_this2.props.document, field.binding) })
+	                  );
+	                  break;
+	              }
+	              return _react2.default.createElement(
+	                "div",
+	                { className: "field columns small-" + field[colWidth] + " " + "medium-" + field[colWidth] + " " + "large-" + field[colWidth] + " " + selected, key: field.id, onClick: function onClick() {
+	                    _this2.props.onSelectField(field.id);
+	                  } },
+	                f
+	              );
+	            })
+	          );
+
+	          r.push(x);
+	          return r;
+	        })
+	      );
+	    }
+	  }]);
+
+	  return ParseFields;
+	}(_react2.default.Component);
+
+	exports.default = ParseFields;
+	;
+
+/***/ },
+/* 266 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Times = __webpack_require__(267);
+
+	var _Times2 = _interopRequireDefault(_Times);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var SelectedField = function (_React$Component) {
+	  _inherits(SelectedField, _React$Component);
+
+	  function SelectedField(props) {
+	    _classCallCheck(this, SelectedField);
+
+	    return _possibleConstructorReturn(this, (SelectedField.__proto__ || Object.getPrototypeOf(SelectedField)).call(this, props));
+	  }
+
+	  _createClass(SelectedField, [{
+	    key: "render",
+	    value: function render() {
+	      var _this2 = this;
+
+	      var _props$selectedField = this.props.selectedField;
+	      var id = _props$selectedField.id;
+	      var label = _props$selectedField.label;
+	      var name = _props$selectedField.name;
+	      var type = _props$selectedField.type;
+	      var colmd = _props$selectedField.colmd;
+	      var colsm = _props$selectedField.colsm;
+	      var colxs = _props$selectedField.colxs;
+	      var src = _props$selectedField.src;
+	      var style = _props$selectedField.style;
+	      var row = _props$selectedField.row;
+	      var onChange = _props$selectedField.onChange;
+	      var binding = _props$selectedField.binding;
+	      var picklist = _props$selectedField.picklist;
+
+	      var output;
+	      if (this.props.selectedField && this.props.selectedField.id) {
+	        var img = "",
+	            pkl = "";
+	        if (type == "image") img = _react2.default.createElement(
+	          "div",
+	          { className: "row" },
+	          _react2.default.createElement(
+	            "div",
+	            { className: "columns small-3" },
+	            _react2.default.createElement(
+	              "label",
+	              null,
+	              "Image Url: "
+	            )
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "columns small-9" },
+	            _react2.default.createElement("input", { type: "text", className: "smallCtrl", value: src, onChange: function onChange(e) {
+	                _this2.props.onChangeSelectedField("src", e.target.value);
+	              } })
+	          )
+	        );
+
+	        if (type == "picklist") {
+	          var items = [_react2.default.createElement("option", null)];
+	          for (var key in this.props.picklists) {
+	            if (this.props.picklists.hasOwnProperty(key)) items.push(_react2.default.createElement(
+	              "option",
+	              { selected: picklist == key, value: key },
+	              key
+	            ));
+	          };
+	          pkl = _react2.default.createElement(
+	            "div",
+	            { className: "row" },
+	            _react2.default.createElement(
+	              "div",
+	              { className: "columns small-3" },
+	              _react2.default.createElement(
+	                "label",
+	                null,
+	                "Picklist: "
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "div",
+	              { className: "columns small-9" },
+	              _react2.default.createElement(
+	                "select",
+	                { className: "smallCtrl", value: picklist, onChange: function onChange(e) {
+	                    _this2.props.onChangeSelectedField("picklist", e.target.value);
+	                  } },
+	                items
+	              )
+	            )
+	          );
+	        }
+
+	        output = _react2.default.createElement(
+	          "div",
+	          null,
+	          _react2.default.createElement(
+	            "h3",
+	            null,
+	            "Selected Field"
+	          ),
+	          _react2.default.createElement("input", { type: "button", className: "button warning", onClick: function onClick() {
+	              _this2.props.deSelectField();
+	            }, value: "Deselect" }),
+	          _react2.default.createElement("br", null),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "row" },
+	            _react2.default.createElement(
+	              "div",
+	              { className: "columns small-3" },
+	              _react2.default.createElement(
+	                "label",
+	                null,
+	                "Row: "
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "div",
+	              { className: "columns small-9" },
+	              _react2.default.createElement(
+	                "select",
+	                { className: "smallCtrl form-control", value: row, onChange: function onChange(e) {
+	                    _this2.props.onChangeFieldRow(e.target.value);
+	                  } },
+	                (0, _Times2.default)(this.props.rows, function (count) {
+	                  return _react2.default.createElement(
+	                    "option",
+	                    { selected: row == count, value: count },
+	                    count
+	                  );
+	                })
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "row" },
+	            _react2.default.createElement(
+	              "div",
+	              { className: "columns small-3" },
+	              _react2.default.createElement(
+	                "label",
+	                null,
+	                "Binding: "
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "div",
+	              { className: "columns small-9" },
+	              _react2.default.createElement("input", { type: "text", className: "smallCtrl", value: binding, onChange: function onChange(e) {
+	                  _this2.props.onChangeSelectedField("binding", e.target.value);
+	                } })
+	            )
+	          ),
+	          pkl,
+	          _react2.default.createElement(
+	            "div",
+	            { className: "row" },
+	            _react2.default.createElement(
+	              "div",
+	              { className: "columns small-3" },
+	              _react2.default.createElement(
+	                "label",
+	                null,
+	                "Name: "
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "div",
+	              { className: "columns small-9" },
+	              _react2.default.createElement("input", { type: "text", className: "smallCtrl", value: name, onChange: function onChange(e) {
+	                  _this2.props.onChangeSelectedField("name", e.target.value);
+	                } })
+	            )
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "row" },
+	            _react2.default.createElement(
+	              "div",
+	              { className: "columns small-3" },
+	              _react2.default.createElement(
+	                "label",
+	                null,
+	                "Label: "
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "div",
+	              { className: "columns small-9" },
+	              _react2.default.createElement("input", { type: "text", className: "smallCtrl", value: label, onChange: function onChange(e) {
+	                  _this2.props.onChangeSelectedField("label", e.target.value);
+	                } })
+	            )
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "row" },
+	            _react2.default.createElement(
+	              "div",
+	              { className: "columns small-3" },
+	              _react2.default.createElement(
+	                "label",
+	                null,
+	                "On Change: "
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "div",
+	              { className: "columns small-9" },
+	              _react2.default.createElement("textarea", { type: "text", className: "smallCtrl", value: onChange, onChange: function onChange(e) {
+	                  _this2.props.onChangeSelectedField("onChange", e.target.value);
+	                } })
+	            )
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "row" },
+	            _react2.default.createElement(
+	              "div",
+	              { className: "columns small-3" },
+	              _react2.default.createElement(
+	                "label",
+	                null,
+	                "Type: "
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "div",
+	              { className: "columns small-9" },
+	              _react2.default.createElement(
+	                "select",
+	                { onChange: function onChange(e) {
+	                    _this2.props.onChangeSelectedField("type", e.target.value);
+	                  }, value: type, className: "smallCtrl" },
+	                _react2.default.createElement(
+	                  "option",
+	                  { value: "text", selected: type == "text" },
+	                  "Text"
+	                ),
+	                _react2.default.createElement(
+	                  "option",
+	                  { value: "textarea", selected: type == "textarea" },
+	                  "Text Area"
+	                ),
+	                _react2.default.createElement(
+	                  "option",
+	                  { value: "date", selected: type == "date" },
+	                  "Date"
+	                ),
+	                _react2.default.createElement(
+	                  "option",
+	                  { value: "datetime", selected: type == "datetime" },
+	                  "Date Time"
+	                ),
+	                _react2.default.createElement(
+	                  "option",
+	                  { value: "number", selected: type == "number" },
+	                  "Number"
+	                ),
+	                _react2.default.createElement(
+	                  "option",
+	                  { value: "email", selected: type == "email" },
+	                  "Email"
+	                ),
+	                _react2.default.createElement(
+	                  "option",
+	                  { value: "checkbox", selected: type == "checkbox" },
+	                  "Checkbox"
+	                ),
+	                _react2.default.createElement(
+	                  "option",
+	                  { value: "image", selected: type == "image" },
+	                  "Image"
+	                ),
+	                _react2.default.createElement(
+	                  "option",
+	                  { value: "spacer", selected: type == "spacer" },
+	                  "Spacer"
+	                ),
+	                _react2.default.createElement(
+	                  "option",
+	                  { value: "linebreak", selected: type == "linebreak" },
+	                  "Linebreak"
+	                )
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "row" },
+	            _react2.default.createElement(
+	              "div",
+	              { className: "columns small-7" },
+	              _react2.default.createElement(
+	                "label",
+	                null,
+	                "Mobile Device Width (Max = 12): "
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "div",
+	              { className: "columns small-5" },
+	              _react2.default.createElement("input", { type: "number", className: "smallCtrl", value: colxs, onChange: function onChange(e) {
+	                  _this2.props.onChangeSelectedField("colxs", e.target.value);
+	                } })
+	            )
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "row" },
+	            _react2.default.createElement(
+	              "div",
+	              { className: "columns small-7" },
+	              _react2.default.createElement(
+	                "label",
+	                null,
+	                "Tablet Device Width (Max = 12): "
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "div",
+	              { className: "columns small-5" },
+	              _react2.default.createElement("input", { type: "number", className: "smallCtrl", value: colsm, onChange: function onChange(e) {
+	                  _this2.props.onChangeSelectedField("colsm", e.target.value);
+	                } })
+	            )
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "row" },
+	            _react2.default.createElement(
+	              "div",
+	              { className: "columns small-7" },
+	              _react2.default.createElement(
+	                "label",
+	                null,
+	                "Desktop Device Width (Max = 12): "
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "div",
+	              { className: "columns small-5" },
+	              _react2.default.createElement("input", { type: "number", className: "smallCtrl", value: colmd, onChange: function onChange(e) {
+	                  _this2.props.onChangeSelectedField("colmd", e.target.value);
+	                } })
+	            )
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "row" },
+	            _react2.default.createElement(
+	              "div",
+	              { className: "columns small-3" },
+	              _react2.default.createElement(
+	                "label",
+	                null,
+	                "Style: "
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "div",
+	              { className: "columns small-9" },
+	              _react2.default.createElement("input", { type: "text", className: "smallCtrl", value: style, onChange: function onChange(e) {
+	                  _this2.props.onChangeSelectedField("style", e.target.value);
+	                } })
+	            )
+	          ),
+	          img,
+	          _react2.default.createElement("input", { type: "button", className: "button alert", onClick: function onClick() {
+	              _this2.props.removeSelectedField();
+	            }, value: "Remove Field" })
+	        );
+	      }
+
+	      return _react2.default.createElement(
+	        "div",
+	        null,
+	        output
+	      );
+	    }
+	  }]);
+
+	  return SelectedField;
+	}(_react2.default.Component);
+
+	exports.default = SelectedField;
+	;
+
+/***/ },
+/* 267 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var Times = function Times(n, f) {
+	  var x = [];
+	  while (n-- > 0) {
+	    x.push(f(n + 1));
+	  }return x;
+	};
+	exports.default = Times;
+
+/***/ },
+/* 268 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Toolbar = function (_React$Component) {
+	  _inherits(Toolbar, _React$Component);
+
+	  function Toolbar(props) {
+	    _classCallCheck(this, Toolbar);
+
+	    var _this = _possibleConstructorReturn(this, (Toolbar.__proto__ || Object.getPrototypeOf(Toolbar)).call(this, props));
+
+	    _this.state = { isActiveIndex: null };
+	    _this.getActive = function (index) {
+	      if (index == _this.state.isActiveIndex) return "is-active";
+	    };
+	    _this.updateActive = function (index) {
+	      if (index == _this.state.isActiveIndex) _this.setState({ isActiveIndex: null });else _this.setState({ isActiveIndex: index });
+	    };
+	    return _this;
+	  }
+
+	  _createClass(Toolbar, [{
+	    key: "render",
+	    value: function render() {
+	      var _this2 = this;
+
+	      var toolbarBtnClasses = "button hollow toolbarBtn";
+	      return _react2.default.createElement(
+	        "div",
+	        { className: "small-12 medium-12 large-12 columns" },
+	        _react2.default.createElement(
+	          "ul",
+	          { className: "accordion" },
+	          _react2.default.createElement(
+	            "li",
+	            { className: "accordion-item " + this.getActive(0), onClick: function onClick() {
+	                _this2.updateActive(0);
+	              } },
+	            _react2.default.createElement(
+	              "a",
+	              { href: "#", className: "accordion-title" },
+	              "Input Controls"
+	            ),
+	            _react2.default.createElement(
+	              "div",
+	              { className: "accordion-content accordion-contentCustom" },
+	              _react2.default.createElement(
+	                "div",
+	                { draggable: "true", className: "small-6 medium-4 large-4 columns", onDragStart: this.props.onDrag, "data-type": "text", style: { paddingLeft: "0.3rem", paddingRight: "0.3rem" } },
+	                _react2.default.createElement(
+	                  "button",
+	                  { type: "button", className: toolbarBtnClasses },
+	                  "Text Input"
+	                )
+	              ),
+	              _react2.default.createElement(
+	                "div",
+	                { draggable: "true", className: "small-6 medium-4 large-4 columns", onDragStart: this.props.onDrag, "data-type": "textarea", style: { paddingLeft: "0.3rem", paddingRight: "0.3rem" } },
+	                _react2.default.createElement(
+	                  "button",
+	                  { type: "button", className: toolbarBtnClasses },
+	                  "Text Area"
+	                )
+	              ),
+	              _react2.default.createElement(
+	                "div",
+	                { draggable: "true", className: "small-6 medium-4 large-4 columns", onDragStart: this.props.onDrag, "data-type": "picklist", style: { paddingLeft: "0.3rem", paddingRight: "0.3rem" } },
+	                _react2.default.createElement(
+	                  "button",
+	                  { type: "button", className: toolbarBtnClasses },
+	                  "Picklist"
+	                )
+	              ),
+	              _react2.default.createElement(
+	                "div",
+	                { draggable: "true", className: "small-6 medium-4 large-4 columns", onDragStart: this.props.onDrag, "data-type": "date", style: { paddingLeft: "0.3rem", paddingRight: "0.3rem" } },
+	                _react2.default.createElement(
+	                  "button",
+	                  { type: "button", className: toolbarBtnClasses },
+	                  "Date Input"
+	                )
+	              ),
+	              _react2.default.createElement(
+	                "div",
+	                { draggable: "true", className: "small-6 medium-4 large-4 columns", onDragStart: this.props.onDrag, "data-type": "datetime", style: { paddingLeft: "0.3rem", paddingRight: "0.3rem" } },
+	                _react2.default.createElement(
+	                  "button",
+	                  { type: "button", className: toolbarBtnClasses },
+	                  "Datetime Input"
+	                )
+	              ),
+	              _react2.default.createElement(
+	                "div",
+	                { draggable: "true", className: "small-6 medium-4 large-4 columns", onDragStart: this.props.onDrag, "data-type": "number", style: { paddingLeft: "0.3rem", paddingRight: "0.3rem" } },
+	                _react2.default.createElement(
+	                  "button",
+	                  { type: "button", className: toolbarBtnClasses },
+	                  "Number Input"
+	                )
+	              ),
+	              _react2.default.createElement(
+	                "div",
+	                { draggable: "true", className: "small-6 medium-4 large-4 columns", onDragStart: this.props.onDrag, "data-type": "checkbox", style: { paddingLeft: "0.3rem", paddingRight: "0.3rem" } },
+	                _react2.default.createElement(
+	                  "button",
+	                  { type: "button", className: toolbarBtnClasses },
+	                  "Checkbox Input"
+	                )
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            "li",
+	            { className: "accordion-item " + this.getActive(1), onClick: function onClick() {
+	                _this2.updateActive(1);
+	              } },
+	            _react2.default.createElement(
+	              "a",
+	              { href: "#", className: "accordion-title" },
+	              "Media Controls"
+	            ),
+	            _react2.default.createElement(
+	              "div",
+	              { className: "accordion-content accordion-contentCustom", "data-tab-content": true },
+	              _react2.default.createElement(
+	                "div",
+	                { draggable: "true", className: "small-6 medium -4 large-4 columns", onDragStart: this.props.onDrag, "data-type": "image", style: { paddingLeft: "0.3rem", paddingRight: "0.3rem" } },
+	                _react2.default.createElement(
+	                  "button",
+	                  { type: "button", className: toolbarBtnClasses },
+	                  "Image"
+	                )
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            "li",
+	            { className: "accordion-item " + this.getActive(2), onClick: function onClick() {
+	                _this2.updateActive(2);
+	              } },
+	            _react2.default.createElement(
+	              "a",
+	              { href: "#", className: "accordion-title" },
+	              "Form Controls"
+	            ),
+	            _react2.default.createElement(
+	              "div",
+	              { className: "accordion-content accordion-contentCustom", "data-tab-content": true },
+	              _react2.default.createElement(
+	                "div",
+	                { draggable: "true", className: "small-6 medium -4 large-4 columns", onDragStart: this.props.onDrag, "data-type": "spacer", style: { paddingLeft: "0.3rem", paddingRight: "0.3rem" } },
+	                _react2.default.createElement(
+	                  "button",
+	                  { type: "button", className: toolbarBtnClasses },
+	                  "Spacer"
+	                )
+	              ),
+	              _react2.default.createElement(
+	                "div",
+	                { draggable: "true", className: "small-6 medium -4 large-4 columns", onDragStart: this.props.onDrag, "data-type": "linebreak", style: { paddingLeft: "0.3rem", paddingRight: "0.3rem" } },
+	                _react2.default.createElement(
+	                  "button",
+	                  { type: "button", className: toolbarBtnClasses },
+	                  "Line Break"
+	                )
+	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          "div",
+	          null,
+	          _react2.default.createElement(
+	            "button",
+	            { type: "text", className: "button primary", onClick: function onClick() {
+	                _this2.props.addRow();
+	              } },
+	            "Add Row"
+	          ),
+	          _react2.default.createElement(
+	            "button",
+	            { type: "text", className: "button alert", onClick: function onClick() {
+	                _this2.props.removeRow();
+	              } },
+	            "Remove Row"
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Toolbar;
+	}(_react2.default.Component);
+
+	exports.default = Toolbar;
+	;
+
+/***/ },
+/* 269 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ProcessGenerator = function (_React$Component) {
+	  _inherits(ProcessGenerator, _React$Component);
+
+	  function ProcessGenerator(props) {
+	    _classCallCheck(this, ProcessGenerator);
+
+	    var _this = _possibleConstructorReturn(this, (ProcessGenerator.__proto__ || Object.getPrototypeOf(ProcessGenerator)).call(this, props));
+
+	    _this.state = {};
+	    return _this;
+	  }
+
+	  _createClass(ProcessGenerator, [{
+	    key: "componentDidMount",
+	    value: function componentDidMount() {}
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        { className: "row" },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "small-12 medium-8 large-8 columns template", onDrop: this.onDrop, onDragOver: this.onDragOver, style: { minHeight: "500px" } },
+	          _react2.default.createElement(
+	            "h2",
+	            null,
+	            "Process Generator"
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return ProcessGenerator;
+	}(_react2.default.Component);
+
+	exports.default = ProcessGenerator;
+
+/***/ },
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -45871,11 +47183,11 @@
 
 	var _reactRedux = __webpack_require__(172);
 
-	var _Nav = __webpack_require__(266);
+	var _Nav = __webpack_require__(271);
 
 	var _Nav2 = _interopRequireDefault(_Nav);
 
-	var _Footer = __webpack_require__(267);
+	var _Footer = __webpack_require__(272);
 
 	var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -45905,11 +47217,37 @@
 	      return _react2.default.createElement(
 	        "div",
 	        null,
-	        _react2.default.createElement(_Nav2.default, { location: location }),
 	        _react2.default.createElement(
 	          "div",
-	          null,
-	          this.props.children
+	          { className: "off-canvas-wrapper" },
+	          _react2.default.createElement(
+	            "div",
+	            { className: "off-canvas-wrapper-inner", "data-off-canvas-wrapper": true },
+	            _react2.default.createElement(
+	              "div",
+	              { className: "off-canvas position-left", id: "offCanvas", "data-off-canvas": true },
+	              _react2.default.createElement(
+	                "button",
+	                { className: "close-button", "aria-label": "Close menu", type: "button", "data-close": true },
+	                _react2.default.createElement(
+	                  "span",
+	                  { "aria-hidden": "true" },
+	                  "\xD7"
+	                )
+	              ),
+	              _react2.default.createElement(_Nav2.default, { location: location })
+	            ),
+	            _react2.default.createElement(
+	              "div",
+	              { className: "off-canvas-content", "data-off-canvas-content": true },
+	              _react2.default.createElement(
+	                "button",
+	                { type: "button", "class": "button", "data-toggle": "offCanvas" },
+	                "Open Menu"
+	              ),
+	              this.props.children
+	            )
+	          )
 	        )
 	      );
 	    }
@@ -45925,7 +47263,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(Layout);
 
 /***/ },
-/* 266 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -45966,7 +47304,37 @@
 
 	      var homeClass = location.pathname === "/" ? "active" : "";
 
-	      return _react2.default.createElement("ul", { "class": "vertical large-horizontal menu" });
+	      return _react2.default.createElement(
+	        "ul",
+	        { className: "vertical large-horizontal menu" },
+	        _react2.default.createElement(
+	          "li",
+	          null,
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: "/documents" },
+	            "Manage Documents"
+	          )
+	        ),
+	        _react2.default.createElement(
+	          "li",
+	          null,
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: "/forms" },
+	            "Manage Forms"
+	          )
+	        ),
+	        _react2.default.createElement(
+	          "li",
+	          null,
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: "/processes" },
+	            "Manage Processes"
+	          )
+	        )
+	      );
 	    }
 	  }]);
 
@@ -45976,7 +47344,7 @@
 	exports.default = Nav;
 
 /***/ },
-/* 267 */
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -46025,7 +47393,7 @@
 	exports.default = Footer;
 
 /***/ },
-/* 268 */
+/* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -46040,6 +47408,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _FormGenerator = __webpack_require__(264);
+
+	var _FormGenerator2 = _interopRequireDefault(_FormGenerator);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -46047,13 +47419,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var times = function times(n, f) {
-	  var x = [];
-	  while (n-- > 0) {
-	    x.push(f(n + 1));
-	  }return x;
-	};
 
 	var Home = function (_React$Component) {
 	  _inherits(Home, _React$Component);
@@ -46063,206 +47428,7 @@
 
 	    var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this, props));
 
-	    _this.state = { fields: [[]],
-	      numFields: 0,
-	      selectedField: {},
-	      displayMode: "desktop",
-	      document: {
-	        "Account": {
-	          "bop": ["x"],
-	          "Name": "Test Document"
-	        },
-	        "NumOfHouses": 5
-	      }
-	    };
-
-	    _this.onSelectField = function (field) {
-	      var selectedField;
-	      var select = _this.state.fields.filter(function (r) {
-	        var found = r.filter(function (f) {
-	          return f.id === field;
-	        });
-	        if (found[0]) selectedField = found[0];
-	        return found[0] != null;
-	      });
-	      if (selectedField) {
-	        _this.setState({ selectedField: selectedField }, function () {
-	          console.log(_this.state.selectedField);
-	        });
-	      }
-	    };
-
-	    _this.changeDisplayMode = function (mode) {
-	      console.log(mode);
-	      _this.setState({ displayMode: mode });
-	    };
-
-	    _this.onDragOver = function (e) {
-	      e.preventDefault();
-	    };
-	    _this.onDrop = function (e) {
-	      var type = e.dataTransfer.getData("type");
-	      var field = void 0;
-	      var numFields = _this.state.numFields;
-
-	      switch (type) {
-	        case "text":
-	          field = { id: numFields + 1, name: "field1", type: "text", label: "Text: ", style: "", colxs: 12, colsm: 4, colmd: 3 };
-	          break;
-	        case "date":
-	          field = { id: numFields + 1, name: "field2", type: "date", label: "Date: ", style: "", colxs: 12, colsm: 4, colmd: 3 };
-	          break;
-	        case "number":
-	          field = { id: numFields + 1, name: "field3", type: "number", label: "Number: ", style: "", colxs: 12, colsm: 4, colmd: 3 };
-	          break;
-	        case "email":
-	          field = { id: numFields + 1, name: "field4", type: "email", label: "Email: ", style: "", colxs: 12, colsm: 4, colmd: 3 };
-	          break;
-	        case "datetime":
-	          field = { id: numFields + 1, name: "field5", type: "datetime", label: "Date Time: ", style: "", colxs: 12, colsm: 4, colmd: 3 };
-	          break;
-	        case "checkbox":
-	          field = { id: numFields + 1, name: "field6", type: "checkbox", label: "Checkbox: ", style: "", colxs: 12, colsm: 4, colmd: 3 };
-	          break;
-	        case "image":
-	          field = { id: numFields + 1, name: "field6", type: "image", label: "Image: ", style: "", src: "https://steamcommunity-a.akamaihd.net/public/images/sharedfiles/steam_workshop_default_image.png", colxs: 12, colsm: 4, colmd: 3 };
-	          break;
-	        default:
-	          field = null;
-	          break;
-	      }
-	      if (field) {
-	        var fields = _this.state.fields;
-	        var currRow = fields[fields.length - 1];
-	        var rowLength = 0;
-	        currRow.filter(function (row) {
-	          rowLength += row.colmd;
-	        });
-	        console.log(rowLength);
-	        if (rowLength + field.colmd <= 12) {
-	          field.row = fields.length;
-	          fields[fields.length - 1].push(field);
-	        } else {
-	          field.row = fields.length + 1;
-	          fields[fields.length] = [];
-	          fields[fields.length - 1].push(field);
-	        }
-
-	        _this.setState({ fields: fields, numFields: _this.state.numFields + 1 });
-	      }
-	    };
-	    _this.onDrag = function (e) {
-	      console.log(e.target.getAttribute("data-type"));
-	      e.dataTransfer.setData("type", e.target.getAttribute("data-type"));
-	    };
-
-	    _this.addRow = function () {
-	      var fields = _this.state.fields;
-	      fields.push([]);
-	      console.log(fields);
-	      _this.setState({ fields: fields });
-	    };
-
-	    _this.removeRow = function () {
-	      var fields = _this.state.fields;
-	      if (fields.length > 1) {
-	        var removedFields = fields[fields.length - 1];
-	        fields[fields.length - 2] = fields[fields.length - 2].concat(removedFields);
-	        console.log(fields);
-	        fields.pop();
-	        _this.setState({ fields: fields });
-	      }
-	    };
-
-	    _this.onChangeSelectedField = function (type, value) {
-	      var field = _this.state.selectedField;
-	      field[type] = value;
-	      var fields = _this.state.fields;
-	      var newFields = fields.map(function (r) {
-	        var x = r.map(function (f) {
-	          if (f.id === field.id) return field;else return f;
-	        });
-	        return x;
-	      });
-	      _this.setState({ selectedField: field, fields: newFields });
-	    };
-
-	    _this.onChangeFieldRow = function (value) {
-	      var field = _this.state.selectedField;
-	      var oldRow = field.row - 1;
-	      var oldIndex;
-	      field.row = value;
-	      var fields = _this.state.fields;
-
-	      var newFields = fields.map(function (r) {
-	        var x = r.map(function (f, i) {
-	          if (f.id === field.id) {
-	            oldIndex = i;
-	            return field;
-	          } else return f;
-	        });
-	        return x;
-	      });
-
-	      fields[value - 1].push(field);
-	      fields[oldRow].splice(oldIndex, 1);
-
-	      _this.setState({ selectedField: field, fields: fields });
-	    };
-
-	    _this.updateProperty = function (obj, is, value) {
-	      if (typeof is == 'string') return _this.updateProperty(obj, is.split('.'), value);else if (is.length == 1 && value !== undefined) {
-	        if (is[0].includes("[") || is[0].includes("]")) {
-	          var patt = /\[([0-9]+)\]/g;
-	          var res = patt.exec(is[0]);
-	          res = res[0].substring(1, res[0].length - 1);
-	          return obj[is[0].split("[")[0]][res] = value;
-	        } else {
-	          return obj[is[0]] = value;
-	        }
-	      } else if (is.length == 0) return obj;else {
-	        if (is[0].includes("[") || is[0].includes("]")) {
-	          var patt = /\[([0-9]+)\]/g;
-	          var res = patt.exec(is[0]);
-	          res = res[0].substring(1, res[0].length - 1);
-	          return _this.updateProperty(obj[is[0].split("[")[0]][res], is.slice(1), value);
-	        } else {
-	          return _this.updateProperty(obj[is[0]], is.slice(1), value);
-	        }
-	      }
-	    };
-
-	    _this.onUpdateDocument = function (property, value, func) {
-	      var document = _this.state.document;
-	      if (property) _this.updateProperty(document, property, value);
-	      try {
-	        eval(func);
-	      } catch (err) {
-	        console.log(err.message);
-	      }
-	      _this.setState({ document: document }, function () {
-	        console.log(_this.state);
-	      });
-	    };
-
-	    _this.removeSelectedField = function () {
-	      var field = _this.state.selectedField;
-	      var fields = _this.state.fields;
-	      var newFields = fields.map(function (r, i) {
-	        var x = r.map(function (f, x) {
-	          if (f.id === field.id) {
-	            fields[i].splice(x, 1);
-	            return;
-	          } else return f;
-	        });
-	        return x;
-	      });
-	      _this.setState({ selectedField: {}, fields: fields });
-	    };
-
-	    _this.deSelectField = function () {
-	      _this.setState({ selectedField: {} });
-	    };
+	    _this.state = {};
 	    return _this;
 	  }
 
@@ -46272,66 +47438,7 @@
 	  }, {
 	    key: "render",
 	    value: function render() {
-	      var _this2 = this;
-
-	      return _react2.default.createElement(
-	        "div",
-	        { className: "row" },
-	        _react2.default.createElement(
-	          "div",
-	          { className: "small-12 medium-8 large-8 columns", onDrop: this.onDrop, onDragOver: this.onDragOver, style: { minHeight: "500px" } },
-	          _react2.default.createElement(
-	            "h2",
-	            null,
-	            "Template Layout"
-	          ),
-	          _react2.default.createElement(ParseFields, { document: this.state.document, onUpdateDocument: this.onUpdateDocument, fields: this.state.fields, onSelectField: this.onSelectField, displayMode: this.state.displayMode, selectedField: this.state.selectedField })
-	        ),
-	        _react2.default.createElement(
-	          "div",
-	          { className: "small-12 medium-4 large-4 columns" },
-	          _react2.default.createElement(
-	            "div",
-	            { className: "row" },
-	            _react2.default.createElement(
-	              "div",
-	              { className: "small-12 medium-12 large-12 columns", style: { paddingBottom: "15px" } },
-	              _react2.default.createElement(
-	                "label",
-	                null,
-	                "Display Mode"
-	              ),
-	              _react2.default.createElement(
-	                "select",
-	                { className: "form-control", value: this.state.displayMode, onChange: function onChange(e) {
-	                    _this2.changeDisplayMode(e.target.value);
-	                  } },
-	                _react2.default.createElement(
-	                  "option",
-	                  { value: "mobile", selected: this.state.displayMode == "mobile" },
-	                  "Mobile"
-	                ),
-	                _react2.default.createElement(
-	                  "option",
-	                  { value: "tablet", selected: this.state.displayMode == "tablet" },
-	                  "Tablet"
-	                ),
-	                _react2.default.createElement(
-	                  "option",
-	                  { value: "desktop", selected: this.state.displayMode == "desktop" },
-	                  "Desktop"
-	                )
-	              )
-	            ),
-	            _react2.default.createElement(Toolbar, { onDrag: this.onDrag, addRow: this.addRow, removeRow: this.removeRow })
-	          ),
-	          _react2.default.createElement(
-	            "div",
-	            { className: "row" },
-	            _react2.default.createElement(SelectedField, { selectedField: this.state.selectedField, onChangeSelectedField: this.onChangeSelectedField, onChangeFieldRow: this.onChangeFieldRow, deSelectField: this.deSelectField, removeSelectedField: this.removeSelectedField, rows: this.state.fields.length })
-	          )
-	        )
-	      );
+	      return _react2.default.createElement("div", null);
 	    }
 	  }]);
 
@@ -46339,629 +47446,6 @@
 	}(_react2.default.Component);
 
 	exports.default = Home;
-
-	var ParseFields = function (_React$Component2) {
-	  _inherits(ParseFields, _React$Component2);
-
-	  function ParseFields(props) {
-	    _classCallCheck(this, ParseFields);
-
-	    return _possibleConstructorReturn(this, (ParseFields.__proto__ || Object.getPrototypeOf(ParseFields)).call(this, props));
-	  }
-
-	  _createClass(ParseFields, [{
-	    key: "render",
-	    value: function render() {
-	      var _this4 = this;
-
-	      var colWidth;
-	      switch (this.props.displayMode) {
-	        case "mobile":
-	          colWidth = "colxs";
-	          break;
-	        case "tablet":
-	          colWidth = "colsm";
-	          break;
-	        case "desktop":
-	          colWidth = "colmd";
-	          break;
-	      }
-	      return _react2.default.createElement(
-	        "div",
-	        null,
-	        this.props.fields.map(function (row) {
-	          var r, fields;
-	          r = [];
-	          var x = _react2.default.createElement(
-	            "div",
-	            { className: "row" },
-	            row.map(function (field) {
-	              var f,
-	                  style,
-	                  selected = "";
-	              if (_this4.props.selectedField.id === field.id) selected = "selectedField";
-	              try {
-	                style = eval("({" + field.style + "})");
-	              } catch (e) {
-	                style = {};
-	              }
-	              switch (field.type) {
-	                case "text":
-	                  f = _react2.default.createElement(
-	                    "div",
-	                    { onClick: function onClick() {
-	                        _this4.props.onSelectField(field.id);
-	                      } },
-	                    _react2.default.createElement(
-	                      "label",
-	                      null,
-	                      field.label
-	                    ),
-	                    _react2.default.createElement("input", { type: "text", className: "form-control", name: field.name, style: style, onChange: function onChange(e) {
-	                        _this4.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
-	                      }, value: _this4.props.document[field.binding] })
-	                  );
-	                  break;
-	                case "date":
-	                  f = _react2.default.createElement(
-	                    "div",
-	                    { onClick: function onClick() {
-	                        _this4.props.onSelectField(field.id);
-	                      } },
-	                    _react2.default.createElement(
-	                      "label",
-	                      null,
-	                      field.label
-	                    ),
-	                    _react2.default.createElement("input", { type: "date", className: "form-control", name: field.name, style: style, onChange: function onChange(e) {
-	                        _this4.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
-	                      }, value: _this4.props.document[field.binding] })
-	                  );
-	                  break;
-	                case "number":
-	                  f = _react2.default.createElement(
-	                    "div",
-	                    { onClick: function onClick() {
-	                        _this4.props.onSelectField(field.id);
-	                      } },
-	                    _react2.default.createElement(
-	                      "label",
-	                      null,
-	                      field.label
-	                    ),
-	                    _react2.default.createElement("input", { type: "number", className: "form-control", name: field.name, style: style, onChange: function onChange(e) {
-	                        _this4.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
-	                      }, value: _this4.props.document[field.binding] })
-	                  );
-	                  break;
-	                case "email":
-	                  f = _react2.default.createElement(
-	                    "div",
-	                    { onClick: function onClick() {
-	                        _this4.props.onSelectField(field.id);
-	                      } },
-	                    _react2.default.createElement(
-	                      "label",
-	                      null,
-	                      field.label
-	                    ),
-	                    _react2.default.createElement("input", { type: "email", className: "form-control", name: field.name, style: style, onChange: function onChange(e) {
-	                        _this4.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
-	                      }, value: _this4.props.document[field.binding] })
-	                  );
-	                  break;
-	                case "datetime":
-	                  f = _react2.default.createElement(
-	                    "div",
-	                    { onClick: function onClick() {
-	                        _this4.props.onSelectField(field.id);
-	                      } },
-	                    _react2.default.createElement(
-	                      "label",
-	                      null,
-	                      field.label
-	                    ),
-	                    _react2.default.createElement("input", { type: "datetime-local", className: "form-control", name: field.name, style: style, onChange: function onChange(e) {
-	                        _this4.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
-	                      }, value: _this4.props.document[field.binding] })
-	                  );
-	                  break;
-	                case "checkbox":
-	                  f = _react2.default.createElement(
-	                    "div",
-	                    { className: "checkbox", onClick: function onClick() {
-	                        _this4.props.onSelectField(field.id);
-	                      } },
-	                    _react2.default.createElement(
-	                      "label",
-	                      null,
-	                      _react2.default.createElement("input", { type: "checkbox", name: field.name, style: style, onChange: function onChange(e) {
-	                          _this4.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
-	                        }, value: _this4.props.document[field.binding] }),
-	                      field.label
-	                    )
-	                  );
-	                  break;
-	                case "image":
-	                  f = _react2.default.createElement(
-	                    "div",
-	                    { onClick: function onClick() {
-	                        _this4.props.onSelectField(field.id);
-	                      } },
-	                    _react2.default.createElement("img", { src: field.src, style: style, onChange: function onChange(e) {
-	                        _this4.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
-	                      }, value: _this4.props.document[field.binding] })
-	                  );
-	                  break;
-	                default:
-	                  f = _react2.default.createElement(
-	                    "div",
-	                    { onClick: function onClick() {
-	                        _this4.props.onSelectField(field.id);
-	                      } },
-	                    _react2.default.createElement(
-	                      "label",
-	                      null,
-	                      field.label
-	                    ),
-	                    _react2.default.createElement("input", { type: "text", className: "form-control", name: field.name, style: style, onChange: function onChange(e) {
-	                        _this4.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
-	                      }, value: _this4.props.document[field.binding] })
-	                  );
-	                  break;
-	              }
-	              return _react2.default.createElement(
-	                "div",
-	                { className: "field columns small-" + field[colWidth] + " " + "medium-" + field[colWidth] + " " + "large-" + field[colWidth] + " " + selected, key: field.id },
-	                f
-	              );
-	            })
-	          );
-
-	          r.push(x);
-	          return r;
-	        })
-	      );
-	    }
-	  }]);
-
-	  return ParseFields;
-	}(_react2.default.Component);
-
-	;
-
-	var Toolbar = function (_React$Component3) {
-	  _inherits(Toolbar, _React$Component3);
-
-	  function Toolbar(props) {
-	    _classCallCheck(this, Toolbar);
-
-	    return _possibleConstructorReturn(this, (Toolbar.__proto__ || Object.getPrototypeOf(Toolbar)).call(this, props));
-	  }
-
-	  _createClass(Toolbar, [{
-	    key: "render",
-	    value: function render() {
-	      var _this6 = this;
-
-	      return _react2.default.createElement(
-	        "div",
-	        null,
-	        _react2.default.createElement(
-	          "div",
-	          null,
-	          _react2.default.createElement(
-	            "div",
-	            { draggable: "true", className: "small-6 medium-4 large-4 columns", onDragStart: this.props.onDrag, "data-type": "text", style: { paddingLeft: "0.3rem", paddingRight: "0.3rem" } },
-	            _react2.default.createElement(
-	              "button",
-	              { type: "button", className: "button hollow", style: { cursor: "move", width: "100%", padding: "0.85em 0.2em" } },
-	              "Text Input"
-	            )
-	          ),
-	          _react2.default.createElement(
-	            "div",
-	            { draggable: "true", className: "small-6 medium-4 large-4 columns", onDragStart: this.props.onDrag, "data-type": "date", style: { paddingLeft: "0.3rem", paddingRight: "0.3rem" } },
-	            _react2.default.createElement(
-	              "button",
-	              { type: "button", className: "button hollow", style: { cursor: "move", width: "100%", padding: "0.85em 0.2em" } },
-	              "Date Input"
-	            )
-	          ),
-	          _react2.default.createElement(
-	            "div",
-	            { draggable: "true", className: "small-6 medium-4 large-4 columns", onDragStart: this.props.onDrag, "data-type": "datetime", style: { paddingLeft: "0.3rem", paddingRight: "0.3rem" } },
-	            _react2.default.createElement(
-	              "button",
-	              { type: "button", className: "button hollow", style: { cursor: "move", width: "100%", padding: "0.85em 0.2em" } },
-	              "Datetime Input"
-	            )
-	          ),
-	          _react2.default.createElement(
-	            "div",
-	            { draggable: "true", className: "small-6 medium-4 large-4 columns", onDragStart: this.props.onDrag, "data-type": "number", style: { paddingLeft: "0.3rem", paddingRight: "0.3rem" } },
-	            _react2.default.createElement(
-	              "button",
-	              { type: "button", className: "button hollow", style: { cursor: "move", width: "100%", padding: "0.85em 0.2em" } },
-	              "Number Input"
-	            )
-	          ),
-	          _react2.default.createElement(
-	            "div",
-	            { draggable: "true", className: "small-6 medium-4 large-4 columns", onDragStart: this.props.onDrag, "data-type": "checkbox", style: { paddingLeft: "0.3rem", paddingRight: "0.3rem" } },
-	            _react2.default.createElement(
-	              "button",
-	              { type: "button", className: "button hollow", style: { cursor: "move", width: "100%", padding: "0.85em 0.2em" } },
-	              "Checkbox Input"
-	            )
-	          ),
-	          _react2.default.createElement(
-	            "div",
-	            { draggable: "true", className: "small-6 medium-4 large-4 columns", onDragStart: this.props.onDrag, "data-type": "image", style: { paddingLeft: "0.3rem", paddingRight: "0.3rem" } },
-	            _react2.default.createElement(
-	              "button",
-	              { type: "button", className: "button hollow", style: { cursor: "move", width: "100%", padding: "0.85em 0.2em" } },
-	              "Image"
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          "div",
-	          null,
-	          _react2.default.createElement(
-	            "button",
-	            { type: "text", className: "button primary", onClick: function onClick() {
-	                _this6.props.addRow();
-	              } },
-	            "Add Row"
-	          ),
-	          _react2.default.createElement(
-	            "button",
-	            { type: "text", className: "button alert", onClick: function onClick() {
-	                _this6.props.removeRow();
-	              } },
-	            "Remove Row"
-	          )
-	        )
-	      );
-	    }
-	  }]);
-
-	  return Toolbar;
-	}(_react2.default.Component);
-
-	;
-
-	var SelectedField = function (_React$Component4) {
-	  _inherits(SelectedField, _React$Component4);
-
-	  function SelectedField(props) {
-	    _classCallCheck(this, SelectedField);
-
-	    return _possibleConstructorReturn(this, (SelectedField.__proto__ || Object.getPrototypeOf(SelectedField)).call(this, props));
-	  }
-
-	  _createClass(SelectedField, [{
-	    key: "render",
-	    value: function render() {
-	      var _this8 = this;
-
-	      var _props$selectedField = this.props.selectedField;
-	      var id = _props$selectedField.id;
-	      var label = _props$selectedField.label;
-	      var name = _props$selectedField.name;
-	      var type = _props$selectedField.type;
-	      var colmd = _props$selectedField.colmd;
-	      var colsm = _props$selectedField.colsm;
-	      var colxs = _props$selectedField.colxs;
-	      var src = _props$selectedField.src;
-	      var style = _props$selectedField.style;
-	      var row = _props$selectedField.row;
-	      var onChange = _props$selectedField.onChange;
-	      var binding = _props$selectedField.binding;
-
-	      var output;
-	      if (this.props.selectedField && this.props.selectedField.id) {
-	        var img = "";
-	        if (type == "image") img = _react2.default.createElement(
-	          "div",
-	          { className: "row" },
-	          _react2.default.createElement(
-	            "div",
-	            { className: "columns small-3" },
-	            _react2.default.createElement(
-	              "label",
-	              null,
-	              "Image Url: "
-	            )
-	          ),
-	          _react2.default.createElement(
-	            "div",
-	            { className: "columns small-9" },
-	            _react2.default.createElement("input", { type: "text", className: "smallCtrl", value: src, onChange: function onChange(e) {
-	                _this8.props.onChangeSelectedField("src", e.target.value);
-	              } })
-	          )
-	        );
-	        output = _react2.default.createElement(
-	          "div",
-	          null,
-	          _react2.default.createElement(
-	            "h3",
-	            null,
-	            "Selected Field"
-	          ),
-	          _react2.default.createElement("input", { type: "button", className: "button warning", onClick: function onClick() {
-	              _this8.props.deSelectField();
-	            }, value: "Deselect" }),
-	          _react2.default.createElement("br", null),
-	          _react2.default.createElement(
-	            "div",
-	            { className: "row" },
-	            _react2.default.createElement(
-	              "div",
-	              { className: "columns small-3" },
-	              _react2.default.createElement(
-	                "label",
-	                null,
-	                "Row: "
-	              )
-	            ),
-	            _react2.default.createElement(
-	              "div",
-	              { className: "columns small-9" },
-	              _react2.default.createElement(
-	                "select",
-	                { className: "smallCtrl form-control", value: row, onChange: function onChange(e) {
-	                    _this8.props.onChangeFieldRow(e.target.value);
-	                  } },
-	                times(this.props.rows, function (count) {
-	                  return _react2.default.createElement(
-	                    "option",
-	                    { selected: row == count, value: count },
-	                    count
-	                  );
-	                })
-	              )
-	            )
-	          ),
-	          _react2.default.createElement(
-	            "div",
-	            { className: "row" },
-	            _react2.default.createElement(
-	              "div",
-	              { className: "columns small-3" },
-	              _react2.default.createElement(
-	                "label",
-	                null,
-	                "Binding: "
-	              )
-	            ),
-	            _react2.default.createElement(
-	              "div",
-	              { className: "columns small-9" },
-	              _react2.default.createElement("input", { type: "text", className: "smallCtrl", value: binding, onChange: function onChange(e) {
-	                  _this8.props.onChangeSelectedField("binding", e.target.value);
-	                } })
-	            )
-	          ),
-	          _react2.default.createElement(
-	            "div",
-	            { className: "row" },
-	            _react2.default.createElement(
-	              "div",
-	              { className: "columns small-3" },
-	              _react2.default.createElement(
-	                "label",
-	                null,
-	                "Name: "
-	              )
-	            ),
-	            _react2.default.createElement(
-	              "div",
-	              { className: "columns small-9" },
-	              _react2.default.createElement("input", { type: "text", className: "smallCtrl", value: name, onChange: function onChange(e) {
-	                  _this8.props.onChangeSelectedField("name", e.target.value);
-	                } })
-	            )
-	          ),
-	          _react2.default.createElement(
-	            "div",
-	            { className: "row" },
-	            _react2.default.createElement(
-	              "div",
-	              { className: "columns small-3" },
-	              _react2.default.createElement(
-	                "label",
-	                null,
-	                "Label: "
-	              )
-	            ),
-	            _react2.default.createElement(
-	              "div",
-	              { className: "columns small-9" },
-	              _react2.default.createElement("input", { type: "text", className: "smallCtrl", value: label, onChange: function onChange(e) {
-	                  _this8.props.onChangeSelectedField("label", e.target.value);
-	                } })
-	            )
-	          ),
-	          _react2.default.createElement(
-	            "div",
-	            { className: "row" },
-	            _react2.default.createElement(
-	              "div",
-	              { className: "columns small-3" },
-	              _react2.default.createElement(
-	                "label",
-	                null,
-	                "On Change: "
-	              )
-	            ),
-	            _react2.default.createElement(
-	              "div",
-	              { className: "columns small-9" },
-	              _react2.default.createElement("textarea", { type: "text", className: "smallCtrl", value: onChange, onChange: function onChange(e) {
-	                  _this8.props.onChangeSelectedField("onChange", e.target.value);
-	                } })
-	            )
-	          ),
-	          _react2.default.createElement(
-	            "div",
-	            { className: "row" },
-	            _react2.default.createElement(
-	              "div",
-	              { className: "columns small-3" },
-	              _react2.default.createElement(
-	                "label",
-	                null,
-	                "Type: "
-	              )
-	            ),
-	            _react2.default.createElement(
-	              "div",
-	              { className: "columns small-9" },
-	              _react2.default.createElement(
-	                "select",
-	                { onChange: function onChange(e) {
-	                    _this8.props.onChangeSelectedField("type", e.target.value);
-	                  }, value: type, className: "smallCtrl" },
-	                _react2.default.createElement(
-	                  "option",
-	                  { value: "text", selected: type == "text" },
-	                  "Text"
-	                ),
-	                _react2.default.createElement(
-	                  "option",
-	                  { value: "date", selected: type == "date" },
-	                  "Date"
-	                ),
-	                _react2.default.createElement(
-	                  "option",
-	                  { value: "datetime", selected: type == "datetime" },
-	                  "Date Time"
-	                ),
-	                _react2.default.createElement(
-	                  "option",
-	                  { value: "number", selected: type == "number" },
-	                  "Number"
-	                ),
-	                _react2.default.createElement(
-	                  "option",
-	                  { value: "email", selected: type == "email" },
-	                  "Email"
-	                ),
-	                _react2.default.createElement(
-	                  "option",
-	                  { value: "checkbox", selected: type == "checkbox" },
-	                  "Checkbox"
-	                ),
-	                _react2.default.createElement(
-	                  "option",
-	                  { value: "image", selected: type == "image" },
-	                  "Image"
-	                )
-	              )
-	            )
-	          ),
-	          _react2.default.createElement(
-	            "div",
-	            { className: "row" },
-	            _react2.default.createElement(
-	              "div",
-	              { className: "columns small-7" },
-	              _react2.default.createElement(
-	                "label",
-	                null,
-	                "Mobile Device Width (Max = 12): "
-	              )
-	            ),
-	            _react2.default.createElement(
-	              "div",
-	              { className: "columns small-5" },
-	              _react2.default.createElement("input", { type: "number", className: "smallCtrl", value: colxs, onChange: function onChange(e) {
-	                  _this8.props.onChangeSelectedField("colxs", e.target.value);
-	                } })
-	            )
-	          ),
-	          _react2.default.createElement(
-	            "div",
-	            { className: "row" },
-	            _react2.default.createElement(
-	              "div",
-	              { className: "columns small-7" },
-	              _react2.default.createElement(
-	                "label",
-	                null,
-	                "Tablet Device Width (Max = 12): "
-	              )
-	            ),
-	            _react2.default.createElement(
-	              "div",
-	              { className: "columns small-5" },
-	              _react2.default.createElement("input", { type: "number", className: "smallCtrl", value: colsm, onChange: function onChange(e) {
-	                  _this8.props.onChangeSelectedField("colsm", e.target.value);
-	                } })
-	            )
-	          ),
-	          _react2.default.createElement(
-	            "div",
-	            { className: "row" },
-	            _react2.default.createElement(
-	              "div",
-	              { className: "columns small-7" },
-	              _react2.default.createElement(
-	                "label",
-	                null,
-	                "Desktop Device Width (Max = 12): "
-	              )
-	            ),
-	            _react2.default.createElement(
-	              "div",
-	              { className: "columns small-5" },
-	              _react2.default.createElement("input", { type: "number", className: "smallCtrl", value: colmd, onChange: function onChange(e) {
-	                  _this8.props.onChangeSelectedField("colmd", e.target.value);
-	                } })
-	            )
-	          ),
-	          _react2.default.createElement(
-	            "div",
-	            { className: "row" },
-	            _react2.default.createElement(
-	              "div",
-	              { className: "columns small-3" },
-	              _react2.default.createElement(
-	                "label",
-	                null,
-	                "Style: "
-	              )
-	            ),
-	            _react2.default.createElement(
-	              "div",
-	              { className: "columns small-9" },
-	              _react2.default.createElement("input", { type: "text", className: "smallCtrl", value: style, onChange: function onChange(e) {
-	                  _this8.props.onChangeSelectedField("style", e.target.value);
-	                } })
-	            )
-	          ),
-	          img,
-	          _react2.default.createElement("input", { type: "button", className: "button alert", onClick: function onClick() {
-	              _this8.props.removeSelectedField();
-	            }, value: "Remove Field" })
-	        );
-	      }
-
-	      return _react2.default.createElement(
-	        "div",
-	        null,
-	        output
-	      );
-	    }
-	  }]);
-
-	  return SelectedField;
-	}(_react2.default.Component);
-
-	;
 
 /***/ }
 /******/ ]);

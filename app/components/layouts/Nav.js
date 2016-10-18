@@ -10,8 +10,12 @@ export default class Nav extends React.Component{
     const homeClass = location.pathname === "/" ? "active" : "";
 
     return (
-      <ul class="vertical large-horizontal menu">
+      <ul className="vertical large-horizontal menu">
+        <li><Link to="/documents">Manage Documents</Link></li>
+        <li><Link to="/forms">Manage Forms</Link></li>
+        <li><Link to="/processes">Manage Processes</Link></li>
       </ul>
+
     );
   }
 }
