@@ -121,6 +121,13 @@ export default class ParseFields extends React.Component {
                         </div>
                        )
                   break;
+                case "paragraph":
+                  f = (
+                        <div className="paragraph" onClick={()=>{this.props.onSelectField(field.id)}}>
+                          <p className="preserveNewLine" style={style}>{field.text}</p>
+                        </div>
+                       )
+                  break;
                 default:
                   f = (
                         <div>
@@ -131,7 +138,7 @@ export default class ParseFields extends React.Component {
                   break;
               }
               return (
-                <div className={"field columns small-" + field[colWidth] + " " + "medium-" + field[colWidth] + " " + "large-" + field[colWidth] + " " + selected} key={field.id} onClick={()=>{this.props.onSelectField(field.id)}}>
+                <div className={"field columns small-" + field[colWidth] + " medium-" + field[colWidth] + " large-" + field[colWidth] + " " + selected} key={field.id} onClick={()=>{this.props.onSelectField(field.id)}}>
                   {f}
                 </div>
               );

@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
 // Reducers
-import calendarReducer from './calendar-reducer';
+import formReducer from './form-reducer';
 
 // Combine Reducers
 var reducers = combineReducers({
-    calendarState: calendarReducer
+    formState: formReducer
 });
 
 export default reducers;

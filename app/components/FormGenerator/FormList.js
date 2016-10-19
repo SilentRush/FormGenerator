@@ -16,15 +16,15 @@ export default class FormList extends React.Component{
 
   render(){
     return (
-      <div>
+      <ul>
         {this.props.forms.map((form)=>{
           return(
-          <div className="ListItem" key={form.id}>
-            <Link to={"/forms/" + form.id}>{form.name}</Link>
-            <span>{form.documentType}</span>
-          </div>);
+          <li className="ListItem" key={form.id}>
+            <Link to={"/forms/" + form.id}>{form.name}
+            <span className="float-right">{form.documentType}&nbsp; <i className="fa fa-arrow-circle-right"></i></span></Link>
+          </li>);
         })}
-      </div>
+      </ul>
     )
   }
 }

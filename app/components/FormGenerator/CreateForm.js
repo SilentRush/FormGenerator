@@ -33,6 +33,8 @@ export default class CreateForm extends React.Component{
       form:{}
 
     };
+
+
     this.exportJSON = () => {
       var form = {};
       let x = () =>
@@ -124,6 +126,12 @@ export default class CreateForm extends React.Component{
           field.colxs = 12;
           field.colsm = 12;
           field.colmd = 12;
+          break;
+        case "paragraph":
+          field.type = "paragraph";
+          field.text = "Test Placeholder";
+          field.colsm = 12;
+          field.colmd = 6;
           break;
         default:
           field = null;
@@ -304,9 +312,33 @@ export default class CreateForm extends React.Component{
     this.deSelectField = () => {
       this.setState({selectedField:{}});
     }
-  }
-  componentDidMount(){
 
+    this.initializeForm = (props) => {
+      let state = this.state;
+      state.form = props.form;
+      state.fields = props.form.fields;
+      state.FormName = props.form.name;
+      state.DocumentType = props.form.documentType;
+      return state;
+    }
+  }
+
+  componentDidMount(){
+    if(this.props.form && this.props.form.id){
+      let state = this.initializeForm(this.props);
+      this.setState(state);
+    }
+  }
+
+  componentWillReceiveProps(props){
+    if(props.form && props.form.id){
+      let state = this.initializeForm(props);
+      this.setState(state);
+    }
+  }
+
+  componentWillUnmount(){
+    console.log("unmount");
   }
 
   render(){

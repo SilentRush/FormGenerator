@@ -41,6 +41,7 @@ export default class Toolbar extends React.Component {
           <li className={"accordion-item " + this.getActive(2)} onClick={()=>{this.updateActive(2)}}>
             <a href="#" className="accordion-title">Form Controls</a>
             <div className="accordion-content accordion-contentCustom" data-tab-content>
+              <div draggable="true" className="small-6 medium -4 large-4 columns" onDragStart={this.props.onDrag}  data-type="paragraph" style={{paddingLeft: "0.3rem",paddingRight: "0.3rem"}}><button type="button" className={toolbarBtnClasses}>Paragraph</button></div>
               <div draggable="true" className="small-6 medium -4 large-4 columns" onDragStart={this.props.onDrag}  data-type="spacer" style={{paddingLeft: "0.3rem",paddingRight: "0.3rem"}}><button type="button" className={toolbarBtnClasses}>Spacer</button></div>
               <div draggable="true" className="small-6 medium -4 large-4 columns" onDragStart={this.props.onDrag}  data-type="linebreak" style={{paddingLeft: "0.3rem",paddingRight: "0.3rem"}}><button type="button" className={toolbarBtnClasses}>Line Break</button></div>
             </div>

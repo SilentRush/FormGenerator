@@ -11,9 +11,9 @@ export default class Nav extends React.Component{
 
     return (
       <ul className="menu vertical" id="navigationMenu">
-        <li data-close="offCanvas"><Link to="/documents"><i className="fi-page-copy"></i>Manage Documents</Link></li>
-        <li data-close="offCanvas"><Link to="/forms"><i className="fi-clipboard-pencil"></i>Manage Forms</Link></li>
-        <li data-close="offCanvas"><Link to="/processes"><i className="fi-loop"></i>Manage Processes</Link></li>
+        <li data-close="offCanvas"><Link to="/documents"><i className="fa fa-pencil-square-o"></i>&nbsp; Manage Documents</Link></li>
+        <li data-close="offCanvas"><Link to="/forms"><i className="fa fa-file-code-o" style={{marginRight: "0.4rem"}}></i>&nbsp; Manage Forms</Link></li>
+        <li data-close="offCanvas"><Link to="/processes"><i className="fa fa-cogs"></i>&nbsp; Manage Processes</Link></li>
       </ul>
 
     );

@@ -20,7 +20,7 @@ class Layout extends React.Component{
     const { location } = this.props;
     const containerStyle = {marginTop: "60px"};
     return (
-      <div>
+      <div className="row expanded">
 
         <div className="off-canvas-wrapper">
           <div className="off-canvas-wrapper-inner" data-off-canvas-wrapper>

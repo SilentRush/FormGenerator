@@ -1,9 +1,11 @@
 import React from "react";
+import { connect } from 'react-redux';
 import CreateForm from "./CreateForm";
+import * as formApi from '../../api/form-api';
 
 
 
-export default class FormPage extends React.Component{
+class FormPage extends React.Component{
   constructor(props){
     super(props);
 
@@ -12,13 +14,28 @@ export default class FormPage extends React.Component{
     };
 
   }
+
   componentDidMount(){
+    console.log("here",this.props);
+    var data;
+    let formId;
+    if(this.props.params)
+      formId = this.props.params.formid;
+    formApi.getForm(formId);
 
   }
 
   render(){
     return (
-      <CreateForm />
+      <CreateForm form={this.props.form} />
     )
   }
 }
+
+const mapStateToProps = function(store) {
+  return {
+    form: store.formState.form
+  };
+};
+
+export default connect(mapStateToProps)(FormPage);
