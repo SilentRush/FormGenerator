@@ -7,7 +7,7 @@
     "start": "node ./public/app.js",
     "postinstall": "webpack",
     "dev": "webpack-dev-server --content-base public --inline --hot --history-api-fallback",
-    "prod": "NODE_ENV=production node server.js"
+    "prod": "NODE_ENV=production node ./public/app.js"
   },
   "engines": {
     "node": "6.2.2",
