@@ -53,25 +53,11 @@
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
 
-	var _react = __webpack_require__(3);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(35);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
-	var _reactRedux = __webpack_require__(173);
-
-	var _store = __webpack_require__(197);
-
-	var _store2 = _interopRequireDefault(_store);
-
-	var _router = __webpack_require__(202);
-
-	var _router2 = _interopRequireDefault(_router);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var React = __webpack_require__(3);
+	var ReactDOM = __webpack_require__(35);
+	var Provider = __webpack_require__(173);
+	var store = __webpack_require__(197);
+	var router = __webpack_require__(202);
 
 	var Server = __webpack_require__(328);
 	var port = process.env.PORT || 8080;
@@ -80,10 +66,10 @@
 
 	var apps = document.getElementById('app');
 
-	_reactDom2.default.render(_react2.default.createElement(
-	  _reactRedux.Provider,
-	  { store: _store2.default },
-	  _router2.default
+	ReactDOM.render(React.createElement(
+	  Provider,
+	  { store: store },
+	  router
 	), apps);
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
