@@ -1,19 +1,13 @@
-const React = require("react");
-const ReactDOM = require("react-dom");
-const Provider = require('react-redux');
-const store = require('./store');
-const router = require('./router');
-
-const Server = require('./server.js')
-const port = (process.env.PORT || 8080)
-const app = Server.app()
-app.listen(port)
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from 'react-redux';
+import store from './store';
+import router from './router';
 
 
-
-const apps = document.getElementById('app');
+const app = document.getElementById('app');
 
 ReactDOM.render(
   <Provider store={store}>{router}</Provider>,
-  apps
+  app
 );
