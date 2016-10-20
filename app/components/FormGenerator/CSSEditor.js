@@ -2,7 +2,7 @@ import React from "react";
 import Codemirror from "react-codemirror";
 require('codemirror/mode/css/css');
 require('codemirror/addon/hint/css-hint');
-import {showHint} from "codemirror/addon/hint/show-hint";
+import {showHint} from "../../../public/js/show-hint";
 
 export default class CSSEditor extends React.Component{
   constructor(props){

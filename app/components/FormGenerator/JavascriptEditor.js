@@ -2,7 +2,7 @@ import React from "react";
 import Codemirror from "react-codemirror";
 require('codemirror/mode/javascript/javascript');
 require('codemirror/addon/hint/javascript-hint');
-import {showHint} from "codemirror/addon/hint/show-hint";
+import {showHint} from "../../../public/js/show-hint";
 
 export default class JavascriptEditor extends React.Component{
   constructor(props){
