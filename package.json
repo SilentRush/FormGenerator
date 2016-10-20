@@ -4,6 +4,7 @@
   "description": "Form Generator",
   "main": "index.js",
   "scripts": {
+    "start": "webpack",
     "dev": "webpack-dev-server --content-base public --inline --hot --history-api-fallback",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
