@@ -4,7 +4,8 @@ module.exports = {
   entry: "./app/app.js",
   output: {
     filename: "bundle.js",
-    path: __dirname + "/public"
+    path: __dirname + "/public",
+    publicPath: '/public/'
   },
   module: {
     loaders: [
@@ -17,5 +18,14 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+  new webpack.optimize.DedupePlugin(),
+  new webpack.optimize.UglifyJsPlugin({
+    minimize: true,
+    compress: {
+      warnings: false
+    }
+  })
+]
 };
