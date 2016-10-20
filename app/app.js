@@ -11,9 +11,9 @@ app.listen(port)
 
 
 
-const app = document.getElementById('app');
+const apps = document.getElementById('app');
 
 ReactDOM.render(
   <Provider store={store}>{router}</Provider>,
-  app
+  apps
 );
