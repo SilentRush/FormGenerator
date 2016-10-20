@@ -1,26 +1,28 @@
+.btnIcon:hover{
+  color: rgba(33, 153, 232, 0.38);
+}
+.btnIcon{
+  color:#2199e8;
+}
 .preserveNewLine{
   white-space: pre-wrap;
 }
 .modal-anim-enter {
     opacity: 0.00;
-    transform: scale(0.7);
     transition: all 0.2s;
 }
 
 .modal-anim-enter.modal-anim-enter-active {
     opacity: 1;
-    transform: scale(1);
 }
 
 .modal-anim-leave {
     opacity: 1;
-    transform: scale(1);
     transition: all 0.2s;
 }
 
 .modal-anim-leave.modal-anim-leave-active {
     opacity: 0.00;
-    transform: scale(0.7);
 }
 
 .modal {
@@ -28,12 +30,21 @@
 
     position: absolute;
     z-index: 1;
-    top: 50%;
+    top: 200px;
     left: 50%;
 
 
     border: 1px solid #ccc;
     background: white;
+}
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background-color: rgba(10, 10, 10, 0.45);
 }
 
 .modal:parent{

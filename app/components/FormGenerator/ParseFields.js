@@ -28,7 +28,7 @@ export default class ParseFields extends React.Component {
               if(this.props.selectedField.id === field.id)
                 selected = "selectedField";
               try{
-                style = eval("({" + field.style + "})");
+                style = eval("(" + field.style + ")");
               }catch(e){
                 style = {};
               }

@@ -1,15 +1,57 @@
 import React from "react";
 import Modal from "../Utility/Modal";
 import Times from "../Utility/Times";
+import JavascriptEditor from "./JavascriptEditor";
+import CSSEditor from "./CSSEditor";
 export default class SelectedField extends React.Component {
   constructor(props){
     super(props);
-    this.state = {isModalOpen:false};
+    this.state = {isModalOpen:false,isCSSModalOpen:false,code:"// Code", css:"{}"};
     this.openModal = () =>{
       this.setState({ isModalOpen: true });
     }
     this.closeModal = () =>{
       this.setState({ isModalOpen: false });
+    }
+
+    this.openCSSModal = () =>{
+      this.setState({ isCSSModalOpen: true });
+    }
+    this.closeCSSModal = () =>{
+      this.setState({ isCSSModalOpen: false });
+    }
+
+    this.updateCode = (newCode) =>{
+      this.setState({
+            code: newCode
+        });
+    }
+    this.saveCode = () => {
+      let code = this.state.code;
+      try{
+        eval( code );
+        this.props.onChangeSelectedField("onChange",this.state.code);
+        this.closeModal();
+      }catch(err){
+        alert(err + "\n" + "Fix Javascript errors before saving!");
+      }
+    }
+
+    this.updateCSS = (css) =>{
+      this.setState({
+            css: css
+        });
+    }
+
+    this.convertToStyle = () => {
+      let code = this.state.css;
+      try{
+        eval('(' + code + ')');
+        this.props.onChangeSelectedField("style",this.state.css);
+        this.closeCSSModal();
+      }catch(err){
+        alert(err + "\n" + "Format must match Javascript Object format! If value is string wrap value in Quotes");
+      }
     }
   }
 
@@ -17,7 +59,6 @@ export default class SelectedField extends React.Component {
     let {id,label,name,type,colmd,colsm,colxs,src,style,row,onChange,binding,picklist,text} = this.props.selectedField;
     let field = this.props.selectedField;
     var SelectedFields = [], output="";
-    console.log(binding,this.props.selectedField);
     if(this.props.selectedField && this.props.selectedField.id){
       var img = "", pkl = "";
       if(field.hasOwnProperty("binding")){
@@ -63,28 +104,34 @@ export default class SelectedField extends React.Component {
       }
 
       if(field.hasOwnProperty("onChange")){
+        var options = {
+            lineNumbers: true
+        };
         let html = (
           <div className="row">
             <div className="columns small-3">
               <label>On Change: </label>
             </div>
             <div className="columns small-9">
-              <textarea type="text" className="smallCtrl" value={onChange} onChange={(e)=>{this.props.onChangeSelectedField("onChange",e.target.value)}} />
-            </div>
-            <button onClick={this.openModal} className="button" type="button">Open modal</button>
-            <Modal isOpen={this.state.isModalOpen}
-                   transitionName="modal-anim">
-              <h3>My Modal</h3>
-              <div className="body">
-                <p>This is the modal&apos;s body.</p>
-                <p>This is the modal&apos;s body.</p>
-                <p>This is the modal&apos;s body.This is the modal&apos;s body.This is the modal&apos;s body.This is the modal&apos;s body.This is the modal&apos;s body.This is the modal&apos;s body.</p>
-                <p>This is the modal&apos;s body.</p>
-                <p>This is the modal&apos;s body.</p>
-                <p>This is the modal&apos;s body.</p>
-                <p>This is the modal&apos;s body.</p>
+              <div className="input-group">
+                <input className="input-group-field smallCtrl" type="text" value={onChange} readOnly />
+                <div className="input-group-button">
+                  <input type="button" className="button smallCtrl" value="Edit" onClick={this.openModal} />
+                </div>
               </div>
-              <button onClick={this.closeModal}>Close modal</button>
+            </div>
+            <Modal isOpen={this.state.isModalOpen}
+                   transitionName="modal-anim"
+                   id="javascriptmodal"
+                   width={700}
+                   closeModal={this.closeModal}
+                   key="javascriptmodal">
+              <h3>Javascript Editor</h3>
+              <div className="body">
+                <JavascriptEditor code={this.state.code} updateCode={this.updateCode} doc={this.props.doc} />
+              </div>
+              <button onClick={()=>{this.saveCode();}} className="button success" type="button">Save</button>
+              <button onClick={()=>{this.closeModal();}} className="button alert" type="button">Cancel</button>
             </Modal>
           </div>
         );
@@ -165,8 +212,26 @@ export default class SelectedField extends React.Component {
               <label>Style: </label>
             </div>
             <div className="columns small-9">
-              <input type="text" className="smallCtrl" value={style} onChange={(e)=>{this.props.onChangeSelectedField("style",e.target.value);}} />
+              <div className="input-group">
+                <input className="input-group-field smallCtrl" type="text" value={style} readOnly />
+                <div className="input-group-button">
+                  <input type="button" className="button smallCtrl" value="Edit" onClick={this.openCSSModal} />
+                </div>
+              </div>
             </div>
+            <Modal isOpen={this.state.isCSSModalOpen}
+                   transitionName="modal-anim"
+                   id="cssmodal"
+                   width={700}
+                   closeModal={this.closeCSSModal}
+                   key="cssmodal">
+              <h3>CSS Editor</h3>
+              <div className="body">
+                <CSSEditor code={this.state.css} updateCode={this.updateCSS} doc={this.props.doc} />
+              </div>
+              <button onClick={()=>{this.convertToStyle();}} className="button success" type="button">Save</button>
+              <button onClick={()=>{this.closeCSSModal();}} className="button alert" type="button">Cancel</button>
+            </Modal>
           </div>
         );
         SelectedFields.push(html);

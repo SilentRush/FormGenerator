@@ -64,7 +64,7 @@ export default class CreateForm extends React.Component{
         return found[0] != null;
       });
       if(selectedField){
-        this.setState({selectedField:selectedField},()=>{console.log(this.state.selectedField)});
+        this.setState({selectedField:selectedField});
       }
     }
 
@@ -157,14 +157,12 @@ export default class CreateForm extends React.Component{
 
     }
     this.onDrag = (e) => {
-      console.log(e.target.getAttribute("data-type"));
       e.dataTransfer.setData("type",e.target.getAttribute("data-type"));
     }
 
     this.addRow = () => {
       var fields = this.state.fields;
       fields.push([]);
-      console.log(fields);
       this.setState({fields:fields});
     }
 
@@ -174,7 +172,6 @@ export default class CreateForm extends React.Component{
         var removedFields = fields[fields.length - 1];
         removedFields.filter((f)=>{f.row=fields.length - 2})
         //fields[fields.length - 2] = fields[fields.length - 2].concat(removedFields);
-        console.log(fields);
         fields.pop();
         this.setState({fields:fields});
       }
@@ -280,7 +277,7 @@ export default class CreateForm extends React.Component{
     }
 
     this.onUpdateDocument = (property, value, func) => {
-      var document = this.state.document;
+      var doc = this.state.document;
       if(property)
         this.updateProperty(document, property, value);
       try{
@@ -289,7 +286,7 @@ export default class CreateForm extends React.Component{
       catch(err){
         console.log(err.message);
       }
-      this.setState({document:document},()=>{console.log(this.state);});
+      this.setState({doc:doc});
     }
 
     this.removeSelectedField = () => {
@@ -338,7 +335,6 @@ export default class CreateForm extends React.Component{
   }
 
   componentWillUnmount(){
-    console.log("unmount");
   }
 
   render(){
@@ -382,7 +378,7 @@ export default class CreateForm extends React.Component{
               <Toolbar onDrag={this.onDrag} addRow={this.addRow} removeRow={this.removeRow} />
             </div>
             <div className="row">
-              <SelectedField picklists={this.state.picklists} selectedField={this.state.selectedField} onChangeSelectedField={this.onChangeSelectedField} onChangeFieldRow={this.onChangeFieldRow} deSelectField={this.deSelectField} removeSelectedField={this.removeSelectedField} rows={this.state.fields.length} />
+              <SelectedField doc={this.state.document} picklists={this.state.picklists} selectedField={this.state.selectedField} onChangeSelectedField={this.onChangeSelectedField} onChangeFieldRow={this.onChangeFieldRow} deSelectField={this.deSelectField} removeSelectedField={this.removeSelectedField} rows={this.state.fields.length} />
             </div>
             <div className="row">
               <div className="small-12 columns">

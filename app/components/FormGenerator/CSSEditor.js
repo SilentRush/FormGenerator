@@ -1,10 +1,10 @@
 import React from "react";
 import Codemirror from "react-codemirror";
-require('codemirror/mode/javascript/javascript');
-require('codemirror/addon/hint/javascript-hint');
+require('codemirror/mode/css/css');
+require('codemirror/addon/hint/css-hint');
 import {showHint} from "codemirror/addon/hint/show-hint";
 
-export default class JavascriptEditor extends React.Component{
+export default class CSSEditor extends React.Component{
   constructor(props){
     super(props);
 
@@ -16,9 +16,10 @@ export default class JavascriptEditor extends React.Component{
         });
     }
 
-    this.autocompleteJavascript = (cm) => {
+
+    this.autocompleteCSS = (cm) => {
       let codeMirror = this.refs['CodeMirror'].getCodeMirrorInstance();
-      codeMirror.showHint(cm, codeMirror.hint.javascript);
+      codeMirror.showHint(cm, codeMirror.hint.css);
     }
     this.autocompleteTag = (cm) => {
       let codeMirror = this.refs['CodeMirror'].getCodeMirrorInstance();
@@ -65,9 +66,9 @@ export default class JavascriptEditor extends React.Component{
     window.doc=this.props.doc;
     var options = {
             lineNumbers: true,
-            mode: 'javascript',
+            mode: 'css',
             theme:'eclipse',
-            extraKeys: {"Ctrl-Space": this.autocompleteTag,"Shift-Space":this.autocompleteJavascript},
+            extraKeys: {"Ctrl-Space": this.autocompleteTag,"Shift-Space":this.autocompleteCSS},
         };
     return (
       <div>

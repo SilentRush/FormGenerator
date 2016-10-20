@@ -16,7 +16,6 @@ class FormPage extends React.Component{
   }
 
   componentDidMount(){
-    console.log("here",this.props);
     var data;
     let formId;
     if(this.props.params)
