@@ -1,8 +1,8 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { Provider } from 'react-redux';
-import store from './store';
-import router from './router';
+const React require("react");
+const ReactDOM require("react-dom");
+const Provider require('react-redux');
+const store require('./store');
+const router require('./router');
 
 const Server = require('./server.js')
 const port = (process.env.PORT || 8080)
