@@ -15,7 +15,7 @@ export default class CreateForm extends React.Component{
       numFields:0,
       selectedField:{},
       displayMode:"desktop",
-      document: {
+      doc: {
         "Account":{
           "bop":["x"],
           "Name":"Test Document"
@@ -277,9 +277,9 @@ export default class CreateForm extends React.Component{
     }
 
     this.onUpdateDocument = (property, value, func) => {
-      var doc = this.state.document;
+      var doc = this.state.doc;
       if(property)
-        this.updateProperty(document, property, value);
+        this.updateProperty(doc, property, value);
       try{
           eval(func);
       }
@@ -370,7 +370,7 @@ export default class CreateForm extends React.Component{
         <div className="row">
           <div className="small-12 medium-8 large-8 columns template" onDrop={this.onDrop} onDragOver={this.onDragOver} style={{minHeight:"500px"}}>
             <h2>Form Layout</h2>
-            <ParseFields picklists={this.state.picklists} getProperty={this.getProperty} document={this.state.document} onUpdateDocument={this.onUpdateDocument} fields={this.state.fields} onSelectField={this.onSelectField} displayMode={this.state.displayMode} selectedField={this.state.selectedField} />
+            <ParseFields picklists={this.state.picklists} getProperty={this.getProperty} doc={this.state.doc} onUpdateDocument={this.onUpdateDocument} fields={this.state.fields} onSelectField={this.onSelectField} displayMode={this.state.displayMode} selectedField={this.state.selectedField} />
           </div>
           <div className="small-12 medium-4 large-4 columns">
 
@@ -378,7 +378,7 @@ export default class CreateForm extends React.Component{
               <Toolbar onDrag={this.onDrag} addRow={this.addRow} removeRow={this.removeRow} />
             </div>
             <div className="row">
-              <SelectedField doc={this.state.document} picklists={this.state.picklists} selectedField={this.state.selectedField} onChangeSelectedField={this.onChangeSelectedField} onChangeFieldRow={this.onChangeFieldRow} deSelectField={this.deSelectField} removeSelectedField={this.removeSelectedField} rows={this.state.fields.length} />
+              <SelectedField doc={this.state.doc} picklists={this.state.picklists} selectedField={this.state.selectedField} onChangeSelectedField={this.onChangeSelectedField} onChangeFieldRow={this.onChangeFieldRow} deSelectField={this.deSelectField} removeSelectedField={this.removeSelectedField} rows={this.state.fields.length} />
             </div>
             <div className="row">
               <div className="small-12 columns">

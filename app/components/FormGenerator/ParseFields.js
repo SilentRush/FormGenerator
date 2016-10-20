@@ -37,7 +37,7 @@ export default class ParseFields extends React.Component {
                   f = (
                         <div>
                           <label>{field.label}</label>
-                          <input type="text" className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.document,field.binding)}  />
+                          <input type="text" className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.doc,field.binding)}  />
                         </div>
                        )
                   break;
@@ -45,7 +45,7 @@ export default class ParseFields extends React.Component {
                   f = (
                         <div>
                           <label>{field.label}</label>
-                          <textarea type="text" className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.document,field.binding)}></textarea>
+                          <textarea type="text" className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.doc,field.binding)}></textarea>
                         </div>
                        )
                   break;
@@ -55,7 +55,7 @@ export default class ParseFields extends React.Component {
                   f = (
                         <div>
                           <label>{field.label}</label>
-                          <select className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.document,field.binding)}>
+                          <select className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.doc,field.binding)}>
                             {picklist}
                           </select>
                         </div>
@@ -65,7 +65,7 @@ export default class ParseFields extends React.Component {
                   f = (
                         <div>
                           <label>{field.label}</label>
-                          <input type="date" className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.document,field.binding)}  />
+                          <input type="date" className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.doc,field.binding)}  />
                         </div>
                        )
                   break;
@@ -73,7 +73,7 @@ export default class ParseFields extends React.Component {
                   f = (
                         <div>
                           <label>{field.label}</label>
-                          <input type="number" className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.document,field.binding)}  />
+                          <input type="number" className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.doc,field.binding)}  />
                         </div>
                        )
                   break;
@@ -81,7 +81,7 @@ export default class ParseFields extends React.Component {
                   f = (
                         <div>
                           <label>{field.label}</label>
-                          <input type="email" className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.document,field.binding)}  />
+                          <input type="email" className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.doc,field.binding)}  />
                         </div>
                        )
                   break;
@@ -89,21 +89,21 @@ export default class ParseFields extends React.Component {
                   f = (
                         <div>
                           <label>{field.label}</label>
-                          <input type="datetime-local" className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.document,field.binding)}  />
+                          <input type="datetime-local" className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.doc,field.binding)}  />
                         </div>
                        )
                   break;
                 case "checkbox":
                   f = (
                         <div className="checkbox">
-                          <label><input type="checkbox" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.document,field.binding)}  />{field.label}</label>
+                          <label><input type="checkbox" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.doc,field.binding)}  />{field.label}</label>
                         </div>
                        )
                   break;
                 case "image":
                   f = (
                         <div>
-                          <img src={field.src} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.document,field.binding)} />
+                          <img src={field.src} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.doc,field.binding)} />
                         </div>
                        )
                   break;
@@ -132,7 +132,7 @@ export default class ParseFields extends React.Component {
                   f = (
                         <div>
                           <label>{field.label}</label>
-                          <input type="text" className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.document,field.binding)}  />
+                          <input type="text" className="form-control" name={field.name} style={style} onChange={(e)=>{this.props.onUpdateDocument(field.binding,e.target.value, field.onChange);}} value={this.props.getProperty(this.props.doc,field.binding)}  />
                         </div>
                        )
                   break;

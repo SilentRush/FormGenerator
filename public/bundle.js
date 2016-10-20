@@ -46114,7 +46114,7 @@
 	      numFields: 0,
 	      selectedField: {},
 	      displayMode: "desktop",
-	      document: {
+	      doc: {
 	        "Account": {
 	          "bop": ["x"],
 	          "Name": "Test Document"
@@ -46362,8 +46362,8 @@
 	    };
 
 	    _this.onUpdateDocument = function (property, value, func) {
-	      var doc = _this.state.document;
-	      if (property) _this.updateProperty(document, property, value);
+	      var doc = _this.state.doc;
+	      if (property) _this.updateProperty(doc, property, value);
 	      try {
 	        eval(func);
 	      } catch (err) {
@@ -46514,7 +46514,7 @@
 	              null,
 	              "Form Layout"
 	            ),
-	            _react2.default.createElement(_ParseFields2.default, { picklists: this.state.picklists, getProperty: this.getProperty, document: this.state.document, onUpdateDocument: this.onUpdateDocument, fields: this.state.fields, onSelectField: this.onSelectField, displayMode: this.state.displayMode, selectedField: this.state.selectedField })
+	            _react2.default.createElement(_ParseFields2.default, { picklists: this.state.picklists, getProperty: this.getProperty, doc: this.state.doc, onUpdateDocument: this.onUpdateDocument, fields: this.state.fields, onSelectField: this.onSelectField, displayMode: this.state.displayMode, selectedField: this.state.selectedField })
 	          ),
 	          _react2.default.createElement(
 	            "div",
@@ -46527,7 +46527,7 @@
 	            _react2.default.createElement(
 	              "div",
 	              { className: "row" },
-	              _react2.default.createElement(_SelectedField2.default, { doc: this.state.document, picklists: this.state.picklists, selectedField: this.state.selectedField, onChangeSelectedField: this.onChangeSelectedField, onChangeFieldRow: this.onChangeFieldRow, deSelectField: this.deSelectField, removeSelectedField: this.removeSelectedField, rows: this.state.fields.length })
+	              _react2.default.createElement(_SelectedField2.default, { doc: this.state.doc, picklists: this.state.picklists, selectedField: this.state.selectedField, onChangeSelectedField: this.onChangeSelectedField, onChangeFieldRow: this.onChangeFieldRow, deSelectField: this.deSelectField, removeSelectedField: this.removeSelectedField, rows: this.state.fields.length })
 	            ),
 	            _react2.default.createElement(
 	              "div",
@@ -46634,7 +46634,7 @@
 	                    ),
 	                    _react2.default.createElement("input", { type: "text", className: "form-control", name: field.name, style: style, onChange: function onChange(e) {
 	                        _this2.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
-	                      }, value: _this2.props.getProperty(_this2.props.document, field.binding) })
+	                      }, value: _this2.props.getProperty(_this2.props.doc, field.binding) })
 	                  );
 	                  break;
 	                case "textarea":
@@ -46648,7 +46648,7 @@
 	                    ),
 	                    _react2.default.createElement("textarea", { type: "text", className: "form-control", name: field.name, style: style, onChange: function onChange(e) {
 	                        _this2.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
-	                      }, value: _this2.props.getProperty(_this2.props.document, field.binding) })
+	                      }, value: _this2.props.getProperty(_this2.props.doc, field.binding) })
 	                  );
 	                  break;
 	                case "picklist":
@@ -46672,7 +46672,7 @@
 	                      "select",
 	                      { className: "form-control", name: field.name, style: style, onChange: function onChange(e) {
 	                          _this2.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
-	                        }, value: _this2.props.getProperty(_this2.props.document, field.binding) },
+	                        }, value: _this2.props.getProperty(_this2.props.doc, field.binding) },
 	                      picklist
 	                    )
 	                  );
@@ -46688,7 +46688,7 @@
 	                    ),
 	                    _react2.default.createElement("input", { type: "date", className: "form-control", name: field.name, style: style, onChange: function onChange(e) {
 	                        _this2.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
-	                      }, value: _this2.props.getProperty(_this2.props.document, field.binding) })
+	                      }, value: _this2.props.getProperty(_this2.props.doc, field.binding) })
 	                  );
 	                  break;
 	                case "number":
@@ -46702,7 +46702,7 @@
 	                    ),
 	                    _react2.default.createElement("input", { type: "number", className: "form-control", name: field.name, style: style, onChange: function onChange(e) {
 	                        _this2.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
-	                      }, value: _this2.props.getProperty(_this2.props.document, field.binding) })
+	                      }, value: _this2.props.getProperty(_this2.props.doc, field.binding) })
 	                  );
 	                  break;
 	                case "email":
@@ -46716,7 +46716,7 @@
 	                    ),
 	                    _react2.default.createElement("input", { type: "email", className: "form-control", name: field.name, style: style, onChange: function onChange(e) {
 	                        _this2.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
-	                      }, value: _this2.props.getProperty(_this2.props.document, field.binding) })
+	                      }, value: _this2.props.getProperty(_this2.props.doc, field.binding) })
 	                  );
 	                  break;
 	                case "datetime":
@@ -46730,7 +46730,7 @@
 	                    ),
 	                    _react2.default.createElement("input", { type: "datetime-local", className: "form-control", name: field.name, style: style, onChange: function onChange(e) {
 	                        _this2.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
-	                      }, value: _this2.props.getProperty(_this2.props.document, field.binding) })
+	                      }, value: _this2.props.getProperty(_this2.props.doc, field.binding) })
 	                  );
 	                  break;
 	                case "checkbox":
@@ -46742,7 +46742,7 @@
 	                      null,
 	                      _react2.default.createElement("input", { type: "checkbox", name: field.name, style: style, onChange: function onChange(e) {
 	                          _this2.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
-	                        }, value: _this2.props.getProperty(_this2.props.document, field.binding) }),
+	                        }, value: _this2.props.getProperty(_this2.props.doc, field.binding) }),
 	                      field.label
 	                    )
 	                  );
@@ -46753,7 +46753,7 @@
 	                    null,
 	                    _react2.default.createElement("img", { src: field.src, style: style, onChange: function onChange(e) {
 	                        _this2.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
-	                      }, value: _this2.props.getProperty(_this2.props.document, field.binding) })
+	                      }, value: _this2.props.getProperty(_this2.props.doc, field.binding) })
 	                  );
 	                  break;
 	                case "spacer":
@@ -46798,7 +46798,7 @@
 	                    ),
 	                    _react2.default.createElement("input", { type: "text", className: "form-control", name: field.name, style: style, onChange: function onChange(e) {
 	                        _this2.props.onUpdateDocument(field.binding, e.target.value, field.onChange);
-	                      }, value: _this2.props.getProperty(_this2.props.document, field.binding) })
+	                      }, value: _this2.props.getProperty(_this2.props.doc, field.binding) })
 	                  );
 	                  break;
 	              }
