@@ -3,22 +3,32 @@ import Modal from "../Utility/Modal";
 import Times from "../Utility/Times";
 import JavascriptEditor from "./JavascriptEditor";
 import CSSEditor from "./CSSEditor";
+import Binding from "./Binding";
+import {NotificationManager} from 'react-notifications';
+
 export default class SelectedField extends React.Component {
   constructor(props){
     super(props);
-    this.state = {isModalOpen:false,isCSSModalOpen:false,code:"// Code", css:"{}"};
-    this.openModal = () =>{
-      this.setState({ isModalOpen: true });
+    this.state = {isModalOpen:false,isCSSModalOpen:false,isBindingModalOpen:false,code:"", css:"{}"};
+    this.openModal = (initialValue) =>{
+      this.setState({ isModalOpen: true, code:initialValue });
     }
     this.closeModal = () =>{
-      this.setState({ isModalOpen: false });
+      this.setState({ isModalOpen: false, code:"" });
     }
 
-    this.openCSSModal = () =>{
-      this.setState({ isCSSModalOpen: true });
+    this.openCSSModal = (initialValue) =>{
+      this.setState({ isCSSModalOpen: true, css:initialValue });
     }
     this.closeCSSModal = () =>{
-      this.setState({ isCSSModalOpen: false });
+      this.setState({ isCSSModalOpen: false, css:"{}" });
+    }
+
+    this.openBindingModal = (initialValue) =>{
+      this.setState({ isBindingModalOpen: true });
+    }
+    this.closeBindingModal = () =>{
+      this.setState({ isBindingModalOpen: false });
     }
 
     this.updateCode = (newCode) =>{
@@ -41,6 +51,11 @@ export default class SelectedField extends React.Component {
       this.setState({
             css: css
         });
+    }
+
+    this.updateBinding = (val) => {
+      this.props.onChangeSelectedField("binding",val);
+      this.closeBindingModal();
     }
 
     this.convertToStyle = () => {
@@ -68,8 +83,26 @@ export default class SelectedField extends React.Component {
               <label>Binding: </label>
             </div>
             <div className="columns small-9">
-              <input type="text" className="smallCtrl" value={binding} onChange={(e)=>{this.props.onChangeSelectedField("binding",e.target.value)}} />
+              <div className="input-group">
+                <input className="input-group-field smallCtrl" type="text" value={binding} readOnly />
+                <div className="input-group-button">
+                  <input type="button" className="button smallCtrl" value="Edit" onClick={()=>{this.openBindingModal()}} />
+                </div>
+              </div>
             </div>
+            <Modal isOpen={this.state.isBindingModalOpen}
+                   transitionName="modal-anim"
+                   id="bindingmodal"
+                   width={400}
+                   closeModal={this.closeBindingModal}
+                   key="bindingmodal">
+              <h3>Binding</h3>
+              <h6></h6>
+              <div className="body">
+                <Binding binding={binding} doc={this.props.doc} closeBindingModal={this.closeBindingModal} updateBinding={this.updateBinding} />
+              </div>
+
+            </Modal>
           </div>
         );
         SelectedFields.push(html);
@@ -116,7 +149,7 @@ export default class SelectedField extends React.Component {
               <div className="input-group">
                 <input className="input-group-field smallCtrl" type="text" value={onChange} readOnly />
                 <div className="input-group-button">
-                  <input type="button" className="button smallCtrl" value="Edit" onClick={this.openModal} />
+                  <input type="button" className="button smallCtrl" value="Edit" onClick={()=>{this.openModal(onChange)}} />
                 </div>
               </div>
             </div>
@@ -127,6 +160,7 @@ export default class SelectedField extends React.Component {
                    closeModal={this.closeModal}
                    key="javascriptmodal">
               <h3>Javascript Editor</h3>
+              <h6><kbd>Ctrl+Space</kbd> will match any tag in the below code.  <kbd>Shift+Space</kbd> will suggest javascript variables,functions, and attributes.</h6>
               <div className="body">
                 <JavascriptEditor code={this.state.code} updateCode={this.updateCode} doc={this.props.doc} />
               </div>
@@ -215,7 +249,7 @@ export default class SelectedField extends React.Component {
               <div className="input-group">
                 <input className="input-group-field smallCtrl" type="text" value={style} readOnly />
                 <div className="input-group-button">
-                  <input type="button" className="button smallCtrl" value="Edit" onClick={this.openCSSModal} />
+                  <input type="button" className="button smallCtrl" value="Edit" onClick={()=>{this.openCSSModal(style)}} />
                 </div>
               </div>
             </div>
@@ -226,6 +260,8 @@ export default class SelectedField extends React.Component {
                    closeModal={this.closeCSSModal}
                    key="cssmodal">
               <h3>CSS Editor</h3>
+              <h5>Example css: {'{background:"white",fontSize:"red"}'}</h5>
+              <h6><kbd>Ctrl+Space</kbd> will match any tag in the below code.  <kbd>Shift+Space</kbd> will suggest css attributes and values.</h6>
               <div className="body">
                 <CSSEditor code={this.state.css} updateCode={this.updateCSS} doc={this.props.doc} />
               </div>

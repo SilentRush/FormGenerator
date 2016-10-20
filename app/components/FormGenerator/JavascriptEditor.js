@@ -3,6 +3,7 @@ import Codemirror from "react-codemirror";
 require('codemirror/mode/javascript/javascript');
 require('codemirror/addon/hint/javascript-hint');
 import {showHint} from "../../../public/js/show-hint";
+import {NotificationManager} from 'react-notifications';
 
 export default class JavascriptEditor extends React.Component{
   constructor(props){
@@ -10,11 +11,6 @@ export default class JavascriptEditor extends React.Component{
 
     this.state = {
     };
-    this.updateCode = (newCode) => {
-        this.setState({
-            code: newCode
-        });
-    }
 
     this.autocompleteJavascript = (cm) => {
       let codeMirror = this.refs['CodeMirror'].getCodeMirrorInstance();
@@ -59,10 +55,14 @@ export default class JavascriptEditor extends React.Component{
   }
   componentWillUnmount(){
     delete window.doc;
+    delete window.NotificationManager;
+    this.props.updateCode("");
   }
 
   render(){
     window.doc=this.props.doc;
+    window.NotificationManager = NotificationManager;
+
     var options = {
             lineNumbers: true,
             mode: 'javascript',

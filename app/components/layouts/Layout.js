@@ -1,6 +1,7 @@
 import React from "react";
 import {Link, browserHistory} from "react-router";
 import { connect } from 'react-redux';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 import Nav from "./Nav";
 import Footer from "./Footer";
@@ -38,6 +39,7 @@ class Layout extends React.Component{
             </div>
           </div>
         </div>
+        <NotificationContainer />
       </div>
     )
   }

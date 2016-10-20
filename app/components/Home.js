@@ -13,11 +13,10 @@ export default class Home extends React.Component{
     };
 
   }
-  componentDidMount(){
-
-  }
 
   render(){
-    return (<div></div>)
+    return (
+      <div></div>
+    )
   }
 }

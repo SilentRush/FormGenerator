@@ -2,14 +2,16 @@ import React from "react";
 import ParseFields from "./ParseFields";
 import SelectedField from "./SelectedField";
 import Toolbar from "./Toolbar";
-
+import {NotificationManager} from 'react-notifications';
 
 
 export default class CreateForm extends React.Component{
   constructor(props){
     super(props);
 
-    this.state = {fields:[
+    this.state = {
+      NotificationManager:NotificationManager,
+      fields:[
         []
       ],
       numFields:0,
@@ -18,7 +20,8 @@ export default class CreateForm extends React.Component{
       doc: {
         "Account":{
           "bop":["x"],
-          "Name":"Test Document"
+          "Name":"Test Document",
+          "bap":{zap:"test",xyz:10}
         },
         "pkl":"",
         "NumOfHouses":5,
@@ -278,6 +281,7 @@ export default class CreateForm extends React.Component{
 
     this.onUpdateDocument = (property, value, func) => {
       var doc = this.state.doc;
+      var NotificationManager = this.state.NotificationManager;
       if(property)
         this.updateProperty(doc, property, value);
       try{
