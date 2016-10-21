@@ -46401,6 +46401,11 @@
 	      var state = _this.state;
 	      state.form = props.form;
 	      state.fields = props.form.fields;
+	      var numFields = 0;
+	      props.form.fields.map(function (row) {
+	        numFields += row.length;
+	      });
+	      state.numFields = numFields;
 	      state.FormName = props.form.name;
 	      state.DocumentType = props.form.documentType;
 	      return state;
