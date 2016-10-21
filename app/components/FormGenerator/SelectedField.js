@@ -87,7 +87,7 @@ export default class SelectedField extends React.Component {
                 <input className="input-group-field smallCtrl" type="text" value={binding} readOnly />
                 <div className="input-group-button">
                   <input type="button" className="button smallCtrl" value="Edit" onClick={()=>{this.openBindingModal()}} />
-                  <button type="button" className="button smallCtrl alert" onClick={()=>{this.props.onChangeSelectedField("binding","")}}><i class="fa fa-refresh" aria-hidden="true"></i></button>
+                  <button type="button" className="button smallCtrl alert" onClick={()=>{this.props.onChangeSelectedField("binding","")}}><i className="fa fa-refresh" aria-hidden="true"></i></button>
                 </div>
               </div>
             </div>
