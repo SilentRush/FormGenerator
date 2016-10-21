@@ -160,7 +160,7 @@ export default class SelectedField extends React.Component {
                    closeModal={this.closeModal}
                    key="javascriptmodal">
               <h3>Javascript Editor</h3>
-              <h6><kbd>Ctrl+Space</kbd> will match any tag in the below code.  <kbd>Shift+Space</kbd> will suggest javascript variables,functions, and attributes.</h6>
+              <h6><kbd>Ctrl+Space</kbd> will match any tag in the below code.  <kbd>Shift+Space</kbd> will suggest javascript variables,functions, and attributes.  Access Document through <kbd>doc</kbd> object.</h6>
               <div className="body">
                 <JavascriptEditor code={this.state.code} updateCode={this.updateCode} doc={this.props.doc} />
               </div>

@@ -47134,7 +47134,13 @@
 	                  null,
 	                  "Shift+Space"
 	                ),
-	                " will suggest javascript variables,functions, and attributes."
+	                " will suggest javascript variables,functions, and attributes.  Access Document through ",
+	                _react2.default.createElement(
+	                  "kbd",
+	                  null,
+	                  "doc"
+	                ),
+	                " object."
 	              ),
 	              _react2.default.createElement(
 	                "div",
