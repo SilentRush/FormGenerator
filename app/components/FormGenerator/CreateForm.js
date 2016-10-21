@@ -318,6 +318,9 @@ export default class CreateForm extends React.Component{
       let state = this.state;
       state.form = props.form;
       state.fields = props.form.fields;
+      let numFields = 0;
+      props.form.fields.map((row)=>{numFields += row.length});
+      state.numFields = numFields;
       state.FormName = props.form.name;
       state.DocumentType = props.form.documentType;
       return state;
