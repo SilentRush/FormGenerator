@@ -47004,7 +47004,14 @@
 	                  { className: "input-group-button" },
 	                  _react2.default.createElement("input", { type: "button", className: "button smallCtrl", value: "Edit", onClick: function onClick() {
 	                      _this2.openBindingModal();
-	                    } })
+	                    } }),
+	                  _react2.default.createElement(
+	                    "button",
+	                    { type: "button", className: "button smallCtrl alert", onClick: function onClick() {
+	                        _this2.props.onChangeSelectedField("binding", "");
+	                      } },
+	                    _react2.default.createElement("i", { className: "fa fa-refresh", "aria-hidden": "true" })
+	                  )
 	                )
 	              )
 	            ),
